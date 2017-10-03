@@ -1,0 +1,402 @@
+.editContainer.editing .ipfEdit {
+    display: none;
+}
+
+.editContainer button:before {
+    content: " ";
+    background-size: 100%;
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: 0.3em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.editContainer .ipfEdit:before {
+    background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Editing/edit-26.png");
+}
+
+.editImageContainer .ipfEdit:before {
+    background-image: url("https://maxcdn.icons8.com/office/PNG/40/Editing/edit_image-40.png");
+}
+
+.ipfAddImage:before {
+    background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Photo_Video/add_image-24.png");
+}
+
+.editExcerptContainer .ipfEdit:before {
+    background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Programming/edit_property-26.png");
+}
+
+.editContainer .ipfCancel:before {
+    background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/cancel-24.png");
+}
+
+.editContainer .ipfSave:before {
+    background-image: url("https://maxcdn.icons8.com/Android_L/PNG/24/Programming/save-24.png");
+}
+
+.editContainer .ipfRemove:before {
+    background-image: url("https://maxcdn.icons8.com/Color/PNG/24/User_Interface/delete_sign-24.png");
+}
+
+.editContainer .ipfAdd:before {
+    background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/plus-24.png");
+}
+
+.editContainer .ipfProperties:before {
+    background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Very_Basic/settings-26.png");
+}
+
+
+.editContainer.editing .ipfSave, .editContainer.editing .ipfCancel {
+    display: unset !important;
+}
+
+.ipfSave, .ipfCancel {
+    display: none;
+}
+
+.editContainer button {
+    font-size: 12px;
+    padding: 0.4em;
+    background: rgba(255, 255, 255, 0.82);
+    border: 2px solid #a8a8a8 !important;
+    border-radius: 9px !important;
+    color: #000 !important;
+    font-family: Montserrat, "Helvetica Neue", sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    margin-bottom: 0 !important;
+    width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+    width: -moz-max-content;    /* Firefox/Gecko */
+    width: -webkit-max-content;
+}
+
+.editContainer button:hover {
+    background: #007acc;
+}
+
+.editContainer {
+    text-align: right;
+}
+
+.editContentContainer {
+    margin-bottom: 0.3em;
+}
+
+.editTitleContainer {
+    position: absolute;
+    float: left;
+    margin-bottom: 0;
+    left: -1em;
+    margin-top: 0;
+    text-align: right;
+    z-index: 10;
+}
+
+.editTitleContainer.editing {
+    left: -2em;
+}
+
+.editTitleContainer button:before, .editImageContainer button:before,
+.editExcerptContainer button:before {
+    margin-right: 0;
+}
+
+.editTitleContainer button, .editImageContainer button  {
+    vertical-align: middle;
+    margin-right: 0.4em;
+}
+
+[vf-editable][contenteditable] {
+    box-shadow: 0 0 1px 3px rgba(0, 74, 255, 0.08);
+
+}
+
+[vf-editable][contenteditable] br:first-child, [data-mce-bogus] {
+    display: unset !important;
+}
+
+.editImageContainer .ipfRemove, .editImageContainer .ipfEdit {
+    display: none;
+}
+
+.editImageContainer {
+    width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+    width: -moz-max-content;    /* Firefox/Gecko */
+    width: -webkit-max-content;
+}
+
+.has-post-thumbnail .ipfAddImage {
+    display: none;
+}
+
+.wp-post-image+.editImageContainer {
+    position: absolute;
+    top: 0.3em;
+    left: 0.2em;
+}
+
+.wp-post-image+.editImageContainer .ipfEdit, .wp-post-image+.editImageContainer .ipfRemove {
+    display: unset;
+}
+
+.ipfNoImage {
+    display: none !important;
+}
+
+.ipfRefreshThumb {
+    display: block;
+}
+
+.ipfNoImage~.ipfRefreshThumb {
+    display: none !important;
+}
+
+.editExcerptContainer {
+    position: absolute;
+    float: left;
+    left: -4.5em;
+    min-width: 4.3em;
+    text-align: right;
+    top: 0.5em;
+    margin-left: -0.6em;
+    min-height: 4em;
+}
+
+.ipfAutoHideControls .editContainer {
+    visibility: hidden;
+}
+
+.ipfAutoHideControls:hover .editContainer, .editContainer:hover,
+.editContainer.editing, .ipfAutoHideControls:hover .editExcerptDecor,
+.editContainer.editing .editExcerptDecor, .editContainer:hover~.editExcerptDecor {
+    visibility: visible !important;
+}
+
+.smallDialog .ui-dialog-title {
+    width: 100% !important;
+}
+
+.ui-dialog.smallDialog {
+    position: fixed !important;
+    z-index: 1000;
+}
+
+.ui-widget-overlay {
+    position: fixed !important;
+}
+
+.ipfDeleteImgConfirmImg {
+    display: block;
+    max-height: 28em;
+    margin: auto;
+    border: 2px double #878787;
+}
+
+button.ipfImageCompletelyDelete[disabled]:hover {
+    padding: 0;
+}
+
+.ipfDeleteImgConfirm {
+    font-size: 1.1em;
+    display: block;
+    text-align: center;
+    margin-top: 0.8em;
+    font-style: italic;
+    color: #783a3a;
+}
+
+.editExcerptDecor {
+    border-left: 2px solid rgb(221, 222, 234);
+    border-radius: 10px;
+    width: 10px;
+    position: absolute;
+    margin-left: -10px;
+    margin-bottom: -7.6em;
+    visibility: hidden;
+    min-height: 4em;
+}
+
+.ipfEditBoxGroup {
+    display: inline-block;
+    vertical-align: text-top;
+    margin-right: 1em;
+}
+
+.ipfEditBoxGroupHeader {
+    color: rgb(91, 0, 105);
+}
+
+.ipfEditDialog {
+    position: fixed !important;
+    box-shadow: 0 2px 13px 2px rgba(0, 0, 0, 0.6);
+    z-index: 1001;
+}
+
+.ipfEditDialog  .ui-dialog-content{
+    width: 100% !important;
+    padding-top: 0.5em !important;
+}
+
+.ipfEditDialog .ui-dialog-titlebar-close {
+    display: none;
+}
+
+.ipfEditDialog .ui-dialog-titlebar, .smallDialog .ui-dialog-titlebar {
+    padding: 0 1em 0.3em 0.7em !important;
+    background: none !important;
+    border: none;
+}
+
+.ipfEditDialog .ui-dialog-title, .smallDialog .ui-dialog-title {
+    border-width: 0px 0px 2px;
+    text-align: center;
+    border-style: solid;
+    width: 100% !important;
+    border-radius: 5px;
+}
+
+.ipfEditDialog .ui-dialog-title {
+    border-color: rgb(189, 189, 189);
+}
+
+.smallDialog .ui-dialog-title {
+    border-color: rgb(113, 117, 161);
+}
+
+.ipfEditDialog.ipfSourceDialog .ui-dialog-title {
+    border-color: rgb(113, 117, 161);
+}
+
+.ipfEditDialog .ui-dialog-buttonpane {
+    padding-bottom: 0 !important;
+    border-color: rgba(173, 173, 173, 0.6);
+    border-style: dashed;
+    border-top-width: 2px !important;
+}
+
+
+body .ipfEditDialog .ui-dialog-buttonpane .ui-button, body .smallDialog .ui-dialog-buttonpane .ui-button {
+    border: 0 !important;
+    border-radius: 2px !important;
+    font-family: Montserrat, "Helvetica Neue", sans-serif !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+}
+
+body .ipfEditDialog .ui-dialog-buttonpane .ui-button {
+    background: #1a1a1a;
+    color: #fff !important;
+}
+
+body .smallDialog .ui-dialog-buttonpane .ui-button {
+    background: white;
+    color: #007acc !important;
+    margin-bottom: 0;
+}
+
+body .ipfEditDialog .ui-dialog-buttonpane .ui-button:hover, body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
+    background: #007acc;
+}
+
+body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
+    color: white !important;
+}
+
+body .smallDialog .ui-dialog-buttonpane {
+    border: none;
+    text-align: center;
+}
+
+body .smallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+    float: none;
+}
+
+.ipfEditBoxGroup.hits {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.3em;
+}
+
+.ipfEditBoxGroup.hits .ipfEditBoxGroupHeader, .ipfEditBoxGroup.hits .ipfEditBox {
+    display: inline-block;
+}
+
+.ipfEditBoxGroup.hits .ipfEditBoxGroupHeader {
+    font-weight: 500;
+}
+
+.ipfHits {
+    font-style: italic;
+}
+
+.ipfEditBoxGroup.seoUltimate {
+    margin-top: 1.3em;
+}
+
+.ipfEditBoxGroup.seoUltimate .ipfEditBoxGroupHeader {
+    font-style: italic;
+}
+
+.ipfEditBoxGroup.content {
+    display: block;
+    margin-top: 1em;
+}
+
+.ipfEditBoxGroup.content textarea {
+    height: 8em;
+}
+
+.ipfEditBoxGroup button {
+    text-transform: none !important;
+}
+
+.mce-floatpanel.mce-tinymce-inline .mce-container-body {
+    max-width: 650px;
+}
+
+.mce-floatpanel.mce-tinymce-inline {
+    max-width: 650px;
+    border: 1px solid #cacaca !important;
+}
+
+.mce-floatpanel.mce-menu .mce-ico {
+    display: inline-block !important;
+}
+
+.ipfSourceDialog .CodeMirror {
+    height: 100%;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.ipfSourceDialog .ui-dialog-content {
+    padding: .5em 1em 0 0 !important;
+}
+
+/*#ipfTools .mce-ico {*/
+    /*display: inline-block !important;*/
+/*}*/
+
+.ipfImgDiv {
+    display: inline-block;
+    max-width: 30%;
+    margin-bottom: 2em;
+    margin-right: 3%;
+    border: 2px solid rgba(173, 173, 173, 0.55);
+    vertical-align: middle;
+    padding-bottom: 0.4em;
+}
+
+.ipfImgDiv.selected {
+    border: 2px solid rgba(113, 136, 224, 0.57);
+    box-shadow: 0 0 4px 2px rgba(46, 67, 105, 0.55);
+}
+
+.ipfImageTitle {
+    text-align: center;
+    line-height: 1;
+    color: dimgrey;
+}

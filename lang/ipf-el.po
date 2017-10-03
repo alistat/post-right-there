@@ -1,0 +1,301 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ipf\n"
+"POT-Creation-Date: 2016-11-13 18:00+0200\n"
+"PO-Revision-Date: 2016-11-16 21:04+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_;esc_html_e;esc_attr_;esc_attr_e\n"
+"X-Poedit-SearchPath-0: admin.php\n"
+"X-Poedit-SearchPath-1: built-in-edit-boxes.php\n"
+"X-Poedit-SearchPath-2: controller.php\n"
+"X-Poedit-SearchPath-3: post-right-there.php\n"
+"X-Poedit-SearchPath-4: template-functions.php\n"
+"X-Poedit-SearchPath-5: templates/nav-menu-meta-box.php\n"
+"X-Poedit-SearchPath-6: templates/options-page.php\n"
+"X-Poedit-SearchPath-7: lang/langjs.php\n"
+
+#: admin.php:7
+msgid "Front Post"
+msgstr ""
+
+#: built-in-edit-boxes.php:8
+msgid "New Post"
+msgstr "Νέο Άρθρο"
+
+#: built-in-edit-boxes.php:8
+msgid "Create Post"
+msgstr "Δημιουργία Άρθρου"
+
+#: built-in-edit-boxes.php:9
+msgid "New Page"
+msgstr "Νέα Σελίδα"
+
+#: built-in-edit-boxes.php:9
+msgid "Create Page"
+msgstr "Δημιουργία Σελίδας"
+
+#: built-in-edit-boxes.php:20
+msgid "Page Views"
+msgstr "Επισκέψεις σελίδας"
+
+#: built-in-edit-boxes.php:33 built-in-edit-boxes.php:45
+msgid "Title"
+msgstr "Τίτλος"
+
+#: built-in-edit-boxes.php:47
+msgid "The Title"
+msgstr "πχ Ανακοινώσεις 2016"
+
+#: built-in-edit-boxes.php:67 built-in-edit-boxes.php:79
+msgid "Slug"
+msgstr "Όνομα συνδέσμου"
+
+#: built-in-edit-boxes.php:69 built-in-edit-boxes.php:81
+msgid "the-slug"
+msgstr "πχ anakinosis-2016"
+
+#: built-in-edit-boxes.php:105 built-in-edit-boxes.php:125
+msgid "Categories"
+msgstr "Κατηγορίες"
+
+#: built-in-edit-boxes.php:163 built-in-edit-boxes.php:185 lang/langjs.php:20
+msgid "Status"
+msgstr "Κατάσταση"
+
+#: built-in-edit-boxes.php:200
+msgid "You do not have permission to publish this post"
+msgstr "Δεν έχετε άδεια να δημοσιεύεσετε αυτό το άρθρο"
+
+#: built-in-edit-boxes.php:214
+msgid "Author"
+msgstr "Συντάκτης"
+
+#: built-in-edit-boxes.php:244 built-in-edit-boxes.php:265
+msgid "Parent Page"
+msgstr "Γονική Σελίδα"
+
+#: built-in-edit-boxes.php:296
+msgid "Search Engine Settings"
+msgstr "Ρυθμίσεις για τις μηχανές αναζήτησης"
+
+#: built-in-edit-boxes.php:297
+msgid "Social Media Settings"
+msgstr "Ρυθμίσεις για τα κοινωνικά δίκτυα"
+
+#: built-in-edit-boxes.php:300 built-in-edit-boxes.php:301
+msgid "Search Engine Title"
+msgstr "Τίτλος για τις μηχανές αναζήτησης"
+
+#: built-in-edit-boxes.php:303 built-in-edit-boxes.php:304
+msgid "Search Engine Description"
+msgstr "Περιγραφή για τις μηχανές αναζήτησης"
+
+#: built-in-edit-boxes.php:307 built-in-edit-boxes.php:308
+msgid "Social Media Title"
+msgstr "Τίτλος για τα κοινωνικά δίκτυα"
+
+#: built-in-edit-boxes.php:310 built-in-edit-boxes.php:311
+msgid "Social Media Description"
+msgstr "Περιγραφή για τα κοινωνικά δίκτυα"
+
+#: built-in-edit-boxes.php:312 built-in-edit-boxes.php:314
+msgid "Social Media Image"
+msgstr "Εικόνα για τα Κοινωνικά Δίκτυα"
+
+#: built-in-edit-boxes.php:318
+msgid "Select Social Media Image"
+msgstr "Επιλογή εικόνας για τα Κοινωνικά Δίκτυα"
+
+#: built-in-edit-boxes.php:341 built-in-edit-boxes.php:360
+msgid "SEO Ultimate"
+msgstr ""
+
+#: controller.php:19
+#, php-format
+msgid "Unrecognizable post id %s. Please contact support."
+msgstr ""
+"Μη αναγνωρίσιμο id άρθρου %s. Παρακαλούμε επικοινωνήστε με την υποστήριξη."
+
+#: controller.php:24
+msgid "Post not found."
+msgstr "Το Άρθρο δεν βρέθηκε"
+
+#: controller.php:29
+msgid "You are not allowed to edit this post."
+msgstr "Δεν έχετε άδεια να επεξεργαστείτε αυτό το άρθρο."
+
+#: controller.php:39
+msgid "Invalid  json. Please contact support."
+msgstr "Μη έγκυρο json. Παρακαλούμε επικοινωνήστε με την υποστήριξη."
+
+#: controller.php:49
+#, php-format
+msgid "Invalid  json.  Please contact support. %s"
+msgstr "Μη έγκυρο json. Παρακαλούμε επικοινωνήστε με την υποστήριξη. %s"
+
+#: controller.php:59 controller.php:72 controller.php:92 controller.php:105
+#: controller.php:125 controller.php:144 controller.php:168 controller.php:181
+msgid "Not Allowed"
+msgstr "Μη επιτρεπτό"
+
+#: controller.php:165
+msgid "No post ID or thumb id. Please contact support."
+msgstr ""
+"Δε βρέθηκε το ID του άρθρου ή το  id της μικρογραφίας. Παρακαλούμε "
+"επικοινωνήστε με την υποστήριξη."
+
+#: controller.php:173
+msgid "Could not set post thumbnail. Please contact support."
+msgstr ""
+"Δεν μπόρεσε να οριστεί μικρογραφία της δημοσίευσης. Παρακαλούμε "
+"επικοινωνήστε με την υποστήριξη."
+
+#: controller.php:186
+msgid "You do not have permission to delete this image completely."
+msgstr "Δεν έχετε άδεια να διαγράψετε τελείως αυτήν την εικόνα."
+
+#: controller.php:195
+msgid "Could remove thumbnail"
+msgstr "Η μικρογραφία δεν αφαιρέθηκε"
+
+#: controller.php:203
+msgid "Numeric value expected for post. Please contact support."
+msgstr ""
+"Numeric value expected for post. Παρακαλούμε επικοινωνήστε με την "
+"υποστήριξη."
+
+#: controller.php:219
+msgid "Attachment not found"
+msgstr "Δεν βρέθηκε το προσαρτημένο αρχείο"
+
+#: controller.php:279
+msgid " errors were noticed "
+msgstr "Παρατηρήθηκαν σφάλματα"
+
+#: controller.php:283
+msgid " warnings were noticed "
+msgstr "Εντοπίστηκαν προειδοποιήσεις"
+
+#: controller.php:296
+msgid "You do not have permission to create post of type "
+msgstr "Δεν έχετε άδεια να δημιουργήσετε άρθρο του τύπου "
+
+#: controller.php:333
+msgid "You do not have permission to change settings"
+msgstr "Δεν έχετε άδεια να αλλάξετε τις ρυθμίσεις"
+
+#: lang/langjs.php:4 template-functions.php:47 template-functions.php:79
+msgid "Cancel"
+msgstr "Άκυρο"
+
+#: lang/langjs.php:5 template-functions.php:46 template-functions.php:78
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: lang/langjs.php:6
+msgid "Close"
+msgstr "Κλείσιμο"
+
+#: lang/langjs.php:7
+msgid ""
+"If image appears incorrectly, please try to <a href=\"javascript:document."
+"location.reload();\">refresh the page</a>."
+msgstr ""
+"Αν η εικόνα δε φαίνεται σωστά, προσπαθήστε το <a href=\"javascript:document."
+"location.reload();\">refresh the page</a>."
+
+#: lang/langjs.php:8
+msgid "Edit Title"
+msgstr "Επεξεργασία Τίτλου"
+
+#: lang/langjs.php:9
+msgid "Change Image"
+msgstr "Αλλαγή εικόνας"
+
+#: lang/langjs.php:10
+msgid "Remove Image"
+msgstr "Αφαίρεση εικόνας"
+
+#: lang/langjs.php:11
+msgid "Remove and completely delete (caution)"
+msgstr "Αφαίρεση και οριστική διαγραφή (προσοχή)"
+
+#: lang/langjs.php:12
+msgid "Remove from this post"
+msgstr "Αφαίρεση από το άρθρο"
+
+#: lang/langjs.php:13
+msgid "Are you sure you want to remove selected image?"
+msgstr "Είστε σίγουροι ότι θέλετε να αφαιρέσετε την επιλεγμένη εικόνα;"
+
+#: lang/langjs.php:14
+msgid "Select or upload file"
+msgstr "Επιλογή ή ανέβασμα αρχείου"
+
+#: lang/langjs.php:15
+msgid "Select"
+msgstr "Επιλογή"
+
+#: lang/langjs.php:16
+msgid "Attributes"
+msgstr "Ιδιότητες"
+
+#: lang/langjs.php:17
+msgid "Created Successfully!"
+msgstr "Επιτυχής δημιουργία!"
+
+#: lang/langjs.php:18
+msgid "View"
+msgstr "Προβολή"
+
+#: lang/langjs.php:19
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+#: lang/langjs.php:21
+msgid "Something Happened"
+msgstr "Κάτι συνέβη"
+
+#: lang/langjs.php:22
+msgid "Insert Image"
+msgstr "Προσθήκη εικόνας"
+
+#: lang/langjs.php:23
+msgid "Insert File"
+msgstr "Εισαγωγή αρχείου"
+
+#: lang/langjs.php:24
+msgid "Source Code"
+msgstr "Πηγαίος κώδικας"
+
+#: template-functions.php:45
+msgid "Edit Here"
+msgstr "Επεξεργασία"
+
+#: template-functions.php:48
+msgid "Add Image"
+msgstr "Προσθήκη εικόνας"
+
+#: template-functions.php:49
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+#: template-functions.php:77
+msgid "Edit Excerpt"
+msgstr "Επεξεργασία αποσπάσματος"
+
+#: templates/nav-menu-meta-box.php:21 templates/nav-menu-meta-box.php:24
+msgid "My Posts"
+msgstr "Οι δημοσιεύσεις μου"
+
+#: templates/nav-menu-meta-box.php:32
+msgid "Select All"
+msgstr "Επιλογή όλων"

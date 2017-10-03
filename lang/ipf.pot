@@ -1,0 +1,291 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ipf\n"
+"POT-Creation-Date: 2016-11-13 18:07+0200\n"
+"PO-Revision-Date: 2016-11-13 16:18+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_;esc_html_e;esc_attr_;esc_attr_e\n"
+"X-Poedit-SearchPath-0: admin.php\n"
+"X-Poedit-SearchPath-1: built-in-edit-boxes.php\n"
+"X-Poedit-SearchPath-2: controller.php\n"
+"X-Poedit-SearchPath-3: post-right-there.php\n"
+"X-Poedit-SearchPath-4: template-functions.php\n"
+"X-Poedit-SearchPath-5: templates/nav-menu-meta-box.php\n"
+"X-Poedit-SearchPath-6: templates/options-page.php\n"
+"X-Poedit-SearchPath-7: lang/langjs.php\n"
+
+#: admin.php:7
+msgid "Front Post"
+msgstr ""
+
+#: built-in-edit-boxes.php:8
+msgid "New Post"
+msgstr ""
+
+#: built-in-edit-boxes.php:8
+msgid "Create Post"
+msgstr ""
+
+#: built-in-edit-boxes.php:9
+msgid "New Page"
+msgstr ""
+
+#: built-in-edit-boxes.php:9
+msgid "Create Page"
+msgstr ""
+
+#: built-in-edit-boxes.php:20
+msgid "Page Views"
+msgstr ""
+
+#: built-in-edit-boxes.php:33 built-in-edit-boxes.php:45
+msgid "Title"
+msgstr ""
+
+#: built-in-edit-boxes.php:47
+msgid "The Title"
+msgstr ""
+
+#: built-in-edit-boxes.php:67 built-in-edit-boxes.php:79
+msgid "Slug"
+msgstr ""
+
+#: built-in-edit-boxes.php:69 built-in-edit-boxes.php:81
+msgid "the-slug"
+msgstr ""
+
+#: built-in-edit-boxes.php:105 built-in-edit-boxes.php:125
+msgid "Categories"
+msgstr ""
+
+#: built-in-edit-boxes.php:163 built-in-edit-boxes.php:185 lang/langjs.php:20
+msgid "Status"
+msgstr ""
+
+#: built-in-edit-boxes.php:200
+msgid "You do not have permission to publish this post"
+msgstr ""
+
+#: built-in-edit-boxes.php:214
+msgid "Author"
+msgstr ""
+
+#: built-in-edit-boxes.php:244 built-in-edit-boxes.php:265
+msgid "Parent Page"
+msgstr ""
+
+#: built-in-edit-boxes.php:296
+msgid "Search Engine Settings"
+msgstr ""
+
+#: built-in-edit-boxes.php:297
+msgid "Social Media Settings"
+msgstr ""
+
+#: built-in-edit-boxes.php:300 built-in-edit-boxes.php:301
+msgid "Search Engine Title"
+msgstr ""
+
+#: built-in-edit-boxes.php:303 built-in-edit-boxes.php:304
+msgid "Search Engine Description"
+msgstr ""
+
+#: built-in-edit-boxes.php:307 built-in-edit-boxes.php:308
+msgid "Social Media Title"
+msgstr ""
+
+#: built-in-edit-boxes.php:310 built-in-edit-boxes.php:311
+msgid "Social Media Description"
+msgstr ""
+
+#: built-in-edit-boxes.php:312 built-in-edit-boxes.php:314
+msgid "Social Media Image"
+msgstr ""
+
+#: built-in-edit-boxes.php:318
+msgid "Select Social Media Image"
+msgstr ""
+
+#: built-in-edit-boxes.php:341 built-in-edit-boxes.php:360
+msgid "SEO Ultimate"
+msgstr ""
+
+#: controller.php:19
+#, php-format
+msgid "Unrecognizable post id %s. Please contact support."
+msgstr ""
+
+#: controller.php:24
+msgid "Post not found."
+msgstr ""
+
+#: controller.php:29
+msgid "You are not allowed to edit this post."
+msgstr ""
+
+#: controller.php:39
+msgid "Invalid  json. Please contact support."
+msgstr ""
+
+#: controller.php:49
+#, php-format
+msgid "Invalid  json.  Please contact support. %s"
+msgstr ""
+
+#: controller.php:59 controller.php:72 controller.php:92 controller.php:105
+#: controller.php:125 controller.php:144 controller.php:168 controller.php:181
+msgid "Not Allowed"
+msgstr ""
+
+#: controller.php:165
+msgid "No post ID or thumb id. Please contact support."
+msgstr ""
+
+#: controller.php:173
+msgid "Could not set post thumbnail. Please contact support."
+msgstr ""
+
+#: controller.php:186
+msgid "You do not have permission to delete this image completely."
+msgstr ""
+
+#: controller.php:195
+msgid "Could remove thumbnail"
+msgstr ""
+
+#: controller.php:203
+msgid "Numeric value expected for post. Please contact support."
+msgstr ""
+
+#: controller.php:219
+msgid "Attachment not found"
+msgstr ""
+
+#: controller.php:279
+msgid " errors were noticed "
+msgstr ""
+
+#: controller.php:283
+msgid " warnings were noticed "
+msgstr ""
+
+#: controller.php:296
+msgid "You do not have permission to create post of type "
+msgstr ""
+
+#: controller.php:333
+msgid "You do not have permission to change settings"
+msgstr ""
+
+#: lang/langjs.php:4 template-functions.php:47 template-functions.php:79
+msgid "Cancel"
+msgstr ""
+
+#: lang/langjs.php:5 template-functions.php:46 template-functions.php:78
+msgid "Save"
+msgstr ""
+
+#: lang/langjs.php:6
+msgid "Close"
+msgstr ""
+
+#: lang/langjs.php:7
+msgid "If image appears incorrectly, please try to <a href=\"javascript:document.location.reload();\">refresh the page</a>."
+msgstr ""
+
+#: lang/langjs.php:8
+msgid "Edit Title"
+msgstr ""
+
+#: lang/langjs.php:9
+msgid "Change Image"
+msgstr ""
+
+#: lang/langjs.php:10
+msgid "Remove Image"
+msgstr ""
+
+#: lang/langjs.php:11
+msgid "Remove and completely delete (caution)"
+msgstr ""
+
+#: lang/langjs.php:12
+msgid "Remove from this post"
+msgstr ""
+
+#: lang/langjs.php:13
+msgid "Are you sure you want to remove selected image?"
+msgstr ""
+
+#: lang/langjs.php:14
+msgid "Select or upload file"
+msgstr ""
+
+#: lang/langjs.php:15
+msgid "Select"
+msgstr ""
+
+#: lang/langjs.php:16
+msgid "Attributes"
+msgstr ""
+
+#: lang/langjs.php:17
+msgid "Created Successfully!"
+msgstr ""
+
+#: lang/langjs.php:18
+msgid "View"
+msgstr ""
+
+#: lang/langjs.php:19
+msgid "Link"
+msgstr ""
+
+#: lang/langjs.php:21
+msgid "Something Happened"
+msgstr ""
+
+#: lang/langjs.php:22
+msgid "Insert Image"
+msgstr ""
+
+#: lang/langjs.php:23
+msgid "Insert File"
+msgstr ""
+
+#: lang/langjs.php:24
+msgid "Source Code"
+msgstr ""
+
+#: template-functions.php:45
+msgid "Edit Here"
+msgstr ""
+
+#: template-functions.php:48
+msgid "Add Image"
+msgstr ""
+
+#: template-functions.php:49
+msgid "Settings"
+msgstr ""
+
+#: template-functions.php:77
+msgid "Edit Excerpt"
+msgstr ""
+
+#: templates/nav-menu-meta-box.php:21 templates/nav-menu-meta-box.php:24
+msgid "My Posts"
+msgstr ""
+
+#: templates/nav-menu-meta-box.php:32
+msgid "Select All"
+msgstr ""
