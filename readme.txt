@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Post Right There ===
 Contributors: alistat
 Tags: front, inline, inplace, post, page, create, edit, manage, rich, tinymce, front-end-editor
 Requires at least: 3.0.1
@@ -92,5 +92,6 @@ _Icon pack by icons8.com_
 7. Image remove confirmation
 8. Disable plugin for specific post types
 9. HTML editor
+
 
 
