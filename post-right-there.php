@@ -49,7 +49,7 @@ function prthEnqueueScripts() {
         // jquery
         wp_enqueue_script('jquery-ui-dialog');
         wp_enqueue_script('jquery-ui-tabs');
-        wp_enqueue_style('jquery-ui-base', "//code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css");
+        wp_enqueue_style('jquery-ui-base', prthFilePath('/css/lib/jquery-ui-base.css'));
 
         // codemirror
         wp_enqueue_script('codemirror', prthFilePath("/js/lib/codemirror/codemirror.min.js"), array(), "5.19.0", true);

@@ -94,7 +94,7 @@
         titleElem.wrap('<div style="position:relative"></div>');
         titleElem.attr('id', editId);
         titleElem.before(
-            '<div class="editTitleContainer editContainer" id="edit-title-container-'+id+'">' +
+            '<div class="prthEditTitleContainer prthEditContainer" id="edit-title-container-'+id+'">' +
             '<button onclick=\'prth.makeTitleEditable(document.getElementById("'+editId+'"), '+id+')\' class="prthEdit" title="'+lang.editTitle+'"></button>' +
             '<button onclick=\'prth.saveTitle(document.getElementById("'+editId+'"), '+id+')\' class="prthSave"  title="'+lang.save+'"></button>' +
             '<button onclick=\'prth.cancelTitleEdit(document.getElementById("'+editId+'"), '+id+')\' class="prthCancel"  title="'+lang.cancel+'"></button>' +
@@ -137,12 +137,12 @@
             // ensure appearance remains correct
             var postQ = $(elem).closest('.post-'+postId+', .postid-'+postId);
             var excerptEditAreaQ = postQ.find('.excerptEditArea');
-            var buttonsQ = postQ.find('.editExcerptContainer button');
-            var editExcerptDecorQ = postQ.find('.editExcerptDecor');
-            var editExcerptContainerQ = postQ.find('.editExcerptContainer');
+            var buttonsQ = postQ.find('.prthEditExcerptContainer button');
+            var prthEditExcerptDecorQ = postQ.find('.prthEditExcerptDecor');
+            var prthEditExcerptContainerQ = postQ.find('.prthEditExcerptContainer');
             prthEditor.addEditorListener(elem, 'change', function () {
-                fixExcerptEditAppearanceFast(excerptEditAreaQ, editExcerptDecorQ,
-                    editExcerptContainerQ, buttonsQ);
+                fixExcerptEditAppearanceFast(excerptEditAreaQ, prthEditExcerptDecorQ,
+                    prthEditExcerptContainerQ, buttonsQ);
             });
         }, function () {});
     }
@@ -168,15 +168,15 @@
     function fixExcerptEditAppearance(postElem) {
         postElem = $(postElem);
         var height = postElem.find('.excerptEditArea').height();
-        postElem.find('.editExcerptDecor, .editExcerptContainer').css('height', height+"px");
-        var buttons = postElem.find('.editExcerptContainer button');
+        postElem.find('.prthEditExcerptDecor, .prthEditExcerptContainer').css('height', height+"px");
+        var buttons = postElem.find('.prthEditExcerptContainer button');
         buttons.css('margin-top', (height*0.3-buttons.height()/2)+"px");
     }
 
-    function fixExcerptEditAppearanceFast(excerptEditAreaQ, editExcerptDecorQ,
-                                          editExcerptContainerQ, buttonsQ) {
+    function fixExcerptEditAppearanceFast(excerptEditAreaQ, prthEditExcerptDecorQ,
+                                          prthEditExcerptContainerQ, buttonsQ) {
         var height = excerptEditAreaQ.height();
-        editExcerptDecorQ.add(editExcerptContainerQ).css('height', height+"px");
+        prthEditExcerptDecorQ.add(prthEditExcerptContainerQ).css('height', height+"px");
         buttonsQ.css('margin-top', (height*0.3-buttonsQ.height()/2)+"px");
     }
 
@@ -189,7 +189,7 @@
         var editId = imageElem.id;
         imageElem = $(imageElem);
         imageElem.parent().css("position", "relative").css("margin", "0");
-        var controls = $('<div class="editImageContainer editContainer" id="edit-image-container-'+id+'">' +
+        var controls = $('<div class="prthEditImageContainer prthEditContainer" id="edit-image-container-'+id+'">' +
             '<button class="prthEdit" title="'+lang.changeImage+'"></button>' +
             '<button class="prthRemove"  title="'+lang.removeImage+'"></button>' +
             '</div>');
@@ -631,7 +631,7 @@
         }
         return smallDialog.dialog({
             width: Math.min(500, $( window ).width()), autoOpen: typeof(open) === "undefined" || open,
-            modal: true, closeOnEscape: closeOnEscape, dialogClass: "smallDialog",
+            modal: true, closeOnEscape: closeOnEscape, dialogClass: "prthSmallDialog",
             open: function(event, ui) {
                 jQuery(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
                 if (closeOnEscape) {

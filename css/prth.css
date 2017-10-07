@@ -1,8 +1,8 @@
-.editContainer.editing .prthEdit {
+.prthEditContainer.editing .prthEdit {
     display: none;
 }
 
-.editContainer button:before {
+.prthEditContainer button:before {
     content: " ";
     background-size: 100%;
     width: 1.3em;
@@ -12,11 +12,11 @@
     display: inline-block;
 }
 
-.editContainer .prthEdit:before {
+.prthEditContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Editing/edit-26.png");
 }
 
-.editImageContainer .prthEdit:before {
+.prthEditImageContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/office/PNG/40/Editing/edit_image-40.png");
 }
 
@@ -24,32 +24,32 @@
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Photo_Video/add_image-24.png");
 }
 
-.editExcerptContainer .prthEdit:before {
+.prthEditExcerptContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Programming/edit_property-26.png");
 }
 
-.editContainer .prthCancel:before {
+.prthEditContainer .prthCancel:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/cancel-24.png");
 }
 
-.editContainer .prthSave:before {
+.prthEditContainer .prthSave:before {
     background-image: url("https://maxcdn.icons8.com/Android_L/PNG/24/Programming/save-24.png");
 }
 
-.editContainer .prthRemove:before {
+.prthEditContainer .prthRemove:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/User_Interface/delete_sign-24.png");
 }
 
-.editContainer .prthAdd:before {
+.prthEditContainer .prthAdd:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/plus-24.png");
 }
 
-.editContainer .prthProperties:before {
+.prthEditContainer .prthProperties:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Very_Basic/settings-26.png");
 }
 
 
-.editContainer.editing .prthSave, .editContainer.editing .prthCancel {
+.prthEditContainer.editing .prthSave, .prthEditContainer.editing .prthCancel {
     display: unset !important;
 }
 
@@ -57,7 +57,7 @@
     display: none;
 }
 
-.editContainer button {
+.prthEditContainer button {
     font-size: 12px;
     padding: 0.4em;
     background: rgba(255, 255, 255, 0.82);
@@ -73,11 +73,11 @@
     width: -webkit-max-content;
 }
 
-.editContainer button:hover {
+.prthEditContainer button:hover {
     background: #007acc;
 }
 
-.editContainer {
+.prthEditContainer {
     text-align: right;
 }
 
@@ -85,7 +85,7 @@
     margin-bottom: 0.3em;
 }
 
-.editTitleContainer {
+.prthEditTitleContainer {
     position: absolute;
     float: left;
     margin-bottom: 0;
@@ -95,16 +95,16 @@
     z-index: 10;
 }
 
-.editTitleContainer.editing {
+.prthEditTitleContainer.editing {
     left: -2em;
 }
 
-.editTitleContainer button:before, .editImageContainer button:before,
-.editExcerptContainer button:before {
+.prthEditTitleContainer button:before, .prthEditImageContainer button:before,
+.prthEditExcerptContainer button:before {
     margin-right: 0;
 }
 
-.editTitleContainer button, .editImageContainer button  {
+.prthEditTitleContainer button, .prthEditImageContainer button  {
     vertical-align: middle;
     margin-right: 0.4em;
 }
@@ -118,11 +118,11 @@
     display: unset !important;
 }
 
-.editImageContainer .prthRemove, .editImageContainer .prthEdit {
+.prthEditImageContainer .prthRemove, .prthEditImageContainer .prthEdit {
     display: none;
 }
 
-.editImageContainer {
+.prthEditImageContainer {
     width: intrinsic;           /* Safari/WebKit uses a non-standard name */
     width: -moz-max-content;    /* Firefox/Gecko */
     width: -webkit-max-content;
@@ -132,13 +132,13 @@
     display: none;
 }
 
-.wp-post-image+.editImageContainer {
+.wp-post-image+.prthEditImageContainer {
     position: absolute;
     top: 0.3em;
     left: 0.2em;
 }
 
-.wp-post-image+.editImageContainer .prthEdit, .wp-post-image+.editImageContainer .prthRemove {
+.wp-post-image+.prthEditImageContainer .prthEdit, .wp-post-image+.prthEditImageContainer .prthRemove {
     display: unset;
 }
 
@@ -154,7 +154,7 @@
     display: none !important;
 }
 
-.editExcerptContainer {
+.prthEditExcerptContainer {
     position: absolute;
     float: left;
     left: -4.5em;
@@ -165,27 +165,23 @@
     min-height: 4em;
 }
 
-.prthAutoHideControls .editContainer {
+.prthAutoHideControls .prthEditContainer {
     visibility: hidden;
 }
 
-.prthAutoHideControls:hover .editContainer, .editContainer:hover,
-.editContainer.editing, .prthAutoHideControls:hover .editExcerptDecor,
-.editContainer.editing .editExcerptDecor, .editContainer:hover~.editExcerptDecor {
+.prthAutoHideControls:hover .prthEditContainer, .prthEditContainer:hover,
+.prthEditContainer.editing, .prthAutoHideControls:hover .prthEditExcerptDecor,
+.prthEditContainer.editing .prthEditExcerptDecor, .prthEditContainer:hover~.prthEditExcerptDecor {
     visibility: visible !important;
 }
 
-.smallDialog .ui-dialog-title {
+.prthSmallDialog .ui-dialog-title {
     width: 100% !important;
 }
 
-.ui-dialog.smallDialog {
+.ui-dialog.prthSmallDialog {
     position: fixed !important;
     z-index: 1000;
-}
-
-.ui-widget-overlay {
-    position: fixed !important;
 }
 
 .prthDeleteImgConfirmImg {
@@ -208,7 +204,7 @@ button.prthImageCompletelyDelete[disabled]:hover {
     color: #783a3a;
 }
 
-.editExcerptDecor {
+.prthEditExcerptDecor {
     border-left: 2px solid rgb(221, 222, 234);
     border-radius: 10px;
     width: 10px;
@@ -244,13 +240,13 @@ button.prthImageCompletelyDelete[disabled]:hover {
     display: none;
 }
 
-.prthEditDialog .ui-dialog-titlebar, .smallDialog .ui-dialog-titlebar {
+.prthEditDialog .ui-dialog-titlebar, .prthSmallDialog .ui-dialog-titlebar {
     padding: 0 1em 0.3em 0.7em !important;
     background: none !important;
     border: none;
 }
 
-.prthEditDialog .ui-dialog-title, .smallDialog .ui-dialog-title {
+.prthEditDialog .ui-dialog-title, .prthSmallDialog .ui-dialog-title {
     border-width: 0px 0px 2px;
     text-align: center;
     border-style: solid;
@@ -262,7 +258,7 @@ button.prthImageCompletelyDelete[disabled]:hover {
     border-color: rgb(189, 189, 189);
 }
 
-.smallDialog .ui-dialog-title {
+.prthSmallDialog .ui-dialog-title {
     border-color: rgb(113, 117, 161);
 }
 
@@ -278,7 +274,7 @@ button.prthImageCompletelyDelete[disabled]:hover {
 }
 
 
-body .prthEditDialog .ui-dialog-buttonpane .ui-button, body .smallDialog .ui-dialog-buttonpane .ui-button {
+body .prthEditDialog .ui-dialog-buttonpane .ui-button, body .prthSmallDialog .ui-dialog-buttonpane .ui-button {
     border: 0 !important;
     border-radius: 2px !important;
     font-family: Montserrat, "Helvetica Neue", sans-serif !important;
@@ -291,26 +287,26 @@ body .prthEditDialog .ui-dialog-buttonpane .ui-button {
     color: #fff !important;
 }
 
-body .smallDialog .ui-dialog-buttonpane .ui-button {
+body .prthSmallDialog .ui-dialog-buttonpane .ui-button {
     background: white;
     color: #007acc !important;
     margin-bottom: 0;
 }
 
-body .prthEditDialog .ui-dialog-buttonpane .ui-button:hover, body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
+body .prthEditDialog .ui-dialog-buttonpane .ui-button:hover, body .prthSmallDialog .ui-dialog-buttonpane .ui-button:hover {
     background: #007acc;
 }
 
-body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
+body .prthSmallDialog .ui-dialog-buttonpane .ui-button:hover {
     color: white !important;
 }
 
-body .smallDialog .ui-dialog-buttonpane {
+body .prthSmallDialog .ui-dialog-buttonpane {
     border: none;
     text-align: center;
 }
 
-body .smallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+body .prthSmallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     float: none;
 }
 

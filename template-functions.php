@@ -43,7 +43,7 @@ function prthMakeContentEditablable($content) {
         $editId = "edit-content-$id";
         ob_start();
         ?>
-        <div class="editContentContainer editContainer" id="edit-container-<?php echo $id;?>">
+        <div class="editContentContainer prthEditContainer" id="edit-container-<?php echo $id;?>">
             <?php if ( prthRestrictionAllowed($restr, "post_content") ): ?>
                 <button onclick='prth.makeContentEditable(document.getElementById("<?php echo $editId;?>"), <?php echo $id;?>)' class="prthEdit"><?php esc_html_e("Edit Here", "prth");?></button>
                 <button onclick='prth.saveContent(document.getElementById("<?php echo $editId;?>"), <?php echo $id;?>)' class="prthSave"><?php esc_html_e("Save", "prth");?></button>
@@ -87,12 +87,12 @@ function prthMakeExcerptEditablable($excerpt) {
         $editId = "edit-excerpt-$id";
         ob_start();
         ?>
-        <div class="editExcerptContainer editContainer" id="edit-excerpt-container-<?php echo $id;?>">
+        <div class="prthEditExcerptContainer prthEditContainer" id="edit-excerpt-container-<?php echo $id;?>">
             <button onclick='prth.makeExcerptEditable(document.getElementById("<?php echo $editId;?>"), <?php echo $id;?>)' class="prthEdit" title="<?php esc_attr_e("Edit Excerpt", "prth");?>"></button>
             <button onclick='prth.saveExcerpt(document.getElementById("<?php echo $editId;?>"), <?php echo $id;?>)' class="prthSave" title="<?php esc_attr_e("Save", "prth");?>"></button>
             <button onclick='prth.cancelExcerptEdit(document.getElementById("<?php echo $editId;?>"), <?php echo $id;?>)' class="prthCancel" title="<?php esc_attr_e("Cancel", "prth");?>"></button>
         </div>
-        <div class="editExcerptDecor"></div>
+        <div class="prthEditExcerptDecor"></div>
         <?php
         $editControls = ob_get_clean();
         $excerpt = "<script>window.prth.editablePosts['$id'] = true;</script>".'<div style="position:relative">'.$editControls
