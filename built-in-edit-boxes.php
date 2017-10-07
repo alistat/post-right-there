@@ -3,23 +3,23 @@ defined( 'ABSPATH' ) or die( '' );
 
 
 // Default create post types
-add_filter('ipf_create_post_types', 'ipfDefaultCreatePostTypes');
-function ipfDefaultCreatePostTypes($arr) {
-    $arr[] = array("menuLabel" => __("New Post", "ipf"), "postType" => "post", "dialogTitle" => __("Create Post", "ipf"));
-    $arr[] = array("menuLabel" => __("New Page", "ipf"), "postType" => "page", "dialogTitle" => __("Create Page", "ipf"));
+add_filter('prth_create_post_types', 'prthDefaultCreatePostTypes');
+function prthDefaultCreatePostTypes($arr) {
+    $arr[] = array("menuLabel" => __("New Post", "prth"), "postType" => "post", "dialogTitle" => __("Create Post", "prth"));
+    $arr[] = array("menuLabel" => __("New Page", "prth"), "postType" => "page", "dialogTitle" => __("Create Page", "prth"));
     return $arr;
 }
 
 
 // Statistics
-add_filter("ipf_edit_boxes", "ipfWpStatisticsEditBox", 5, 2);
-function ipfWpStatisticsEditBox($arr, $restr) {
-    if (function_exists("wp_statistics_pages") && ipfRestrictionAllowed($restr, 'custom.wp_statistics')) {
+add_filter("prth_edit_boxes", "prthWpStatisticsEditBox", 5, 2);
+function prthWpStatisticsEditBox($arr, $restr) {
+    if (function_exists("wp_statistics_pages") && prthRestrictionAllowed($restr, 'custom.wp_statistics')) {
         $hits = wp_statistics_pages("total", get_permalink(), get_the_ID());
         $arr["hits"] = array(
-            "title" => __("Page Views", "ipf"),
+            "title" => __("Page Views", "prth"),
             "boxes" => array("hitsval" => array(
-                "html" => "<span class='ipfHits'>$hits</span>"
+                "html" => "<span class='prthHits'>$hits</span>"
             ))
         );
     }
@@ -27,9 +27,9 @@ function ipfWpStatisticsEditBox($arr, $restr) {
 }
 
 // title
-add_filter("ipf_edit_boxes", "ipfTitleEditBoxes", 10, 2);
-function ipfTitleEditBoxes($arr, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_title')) {
+add_filter("prth_edit_boxes", "prthTitleEditBoxes", 10, 2);
+function prthTitleEditBoxes($arr, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_title')) {
         return $arr;
     }
 
@@ -37,32 +37,32 @@ function ipfTitleEditBoxes($arr, $restr) {
         "title" => __("Title"),
         "boxes" => array("titleval" => array(
             "html" => '<input type="text" value="'.esc_attr(get_post_field('post_title')).'"/>',
-            "validateJs" => 'ipf.validateNotEmpty'
+            "validateJs" => 'prth.validateNotEmpty'
         ))
     );
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfTitleAddBoxes", 10, 2);
-function ipfTitleAddBoxes($arr, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_title')) {
+add_filter("prth_add_boxes", "prthTitleAddBoxes", 10, 2);
+function prthTitleAddBoxes($arr, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_title')) {
         return $arr;
     }
 
     $arr["title"] = array(
         "title" => __("Title"),
         "boxes" => array("titleval" => array(
-            "html" => '<input type="text" placeholder="'.__('The Title', 'ipf').'"/>',
-            "validateJs" => 'ipf.validateNotEmpty'
+            "html" => '<input type="text" placeholder="'.__('The Title', 'prth').'"/>',
+            "validateJs" => 'prth.validateNotEmpty'
         ))
     );
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfTitleEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfTitleEdit", 10, 3);
-function ipfTitleEdit($result, $boxData, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_title')) {
+add_filter("prth_edit_post", "prthTitleEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthTitleEdit", 10, 3);
+function prthTitleEdit($result, $boxData, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_title')) {
         return $result;
     }
 
@@ -73,42 +73,42 @@ function ipfTitleEdit($result, $boxData, $restr) {
 }
 
 // slug
-add_filter("ipf_edit_boxes", "ipfSlugEditBoxes", 10, 2);
-function ipfSlugEditBoxes($arr, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_name')) {
+add_filter("prth_edit_boxes", "prthSlugEditBoxes", 10, 2);
+function prthSlugEditBoxes($arr, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_name')) {
         return $arr;
     }
 
     $arr["slug"] = array(
         "title" => __("Slug"),
         "boxes" => array("slugval" => array(
-            "html" => '<input type="text" value="'.esc_attr(get_post_field('post_name')).'" placeholder="'.__('the-slug', 'ipf').'" />',
-            "validateJs" => 'ipf.validateNotEmpty'
+            "html" => '<input type="text" value="'.esc_attr(get_post_field('post_name')).'" placeholder="'.__('the-slug', 'prth').'" />',
+            "validateJs" => 'prth.validateNotEmpty'
         ))
     );
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfSlugAddBoxes", 10, 2);
-function ipfSlugAddBoxes($arr, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_name')) {
+add_filter("prth_add_boxes", "prthSlugAddBoxes", 10, 2);
+function prthSlugAddBoxes($arr, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_name')) {
         return $arr;
     }
 
     $arr["slug"] = array(
         "title" => __("Slug"),
         "boxes" => array("slugval" => array(
-            "html" => '<input type="text" placeholder="'.__('the-slug', 'ipf').'"/>',
-            "validateJs" => 'ipf.validateNotEmpty'
+            "html" => '<input type="text" placeholder="'.__('the-slug', 'prth').'"/>',
+            "validateJs" => 'prth.validateNotEmpty'
         ))
     );
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfSlugEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfSlugEdit", 10, 3);
-function ipfSlugEdit($result, $boxData, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_name')) {
+add_filter("prth_edit_post", "prthSlugEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthSlugEdit", 10, 3);
+function prthSlugEdit($result, $boxData, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_name')) {
         return $result;
     }
 
@@ -119,11 +119,11 @@ function ipfSlugEdit($result, $boxData, $restr) {
 }
 
 // category
-add_filter("ipf_edit_boxes", "ipfCategoryEditBoxes", 10, 2);
-function ipfCategoryEditBoxes($arr, $restr) {
-    $restr = ipfRestrictionGet($restr, 'taxonomy.category');
+add_filter("prth_edit_boxes", "prthCategoryEditBoxes", 10, 2);
+function prthCategoryEditBoxes($arr, $restr) {
+    $restr = prthRestrictionGet($restr, 'taxonomy.category');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
@@ -146,11 +146,11 @@ function ipfCategoryEditBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfCategoryAddBoxes", 10, 4);
-function ipfCategoryAddBoxes($arr, $restr, $tag, $post_type) {
-    $restr = ipfRestrictionGet($restr, 'taxonomy.category');
+add_filter("prth_add_boxes", "prthCategoryAddBoxes", 10, 4);
+function prthCategoryAddBoxes($arr, $restr, $tag, $post_type) {
+    $restr = prthRestrictionGet($restr, 'taxonomy.category');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
@@ -172,16 +172,16 @@ function ipfCategoryAddBoxes($arr, $restr, $tag, $post_type) {
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfCategoryEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfCategoryEdit", 10, 3);
-function ipfCategoryEdit($result, $boxData, $restr) {
-    $restr = ipfRestrictionGet($restr, 'taxonomy.category');
+add_filter("prth_edit_post", "prthCategoryEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthCategoryEdit", 10, 3);
+function prthCategoryEdit($result, $boxData, $restr) {
+    $restr = prthRestrictionGet($restr, 'taxonomy.category');
 
-    if (!ipfRestrictionAllowed($restr)) {
+    if (!prthRestrictionAllowed($restr)) {
         return $result;
     }
 
-    $forcedValue = ipfRestrictionGet($restr, 'force_value');
+    $forcedValue = prthRestrictionGet($restr, 'force_value');
     if (isset($forcedValue)) {
         $result["post_tax"]["category"] = is_array($forcedValue) ? $forcedValue : array($forcedValue);
         return $result;
@@ -195,16 +195,16 @@ function ipfCategoryEdit($result, $boxData, $restr) {
 
 
 // post status
-add_filter("ipf_edit_boxes", "ipfPostStatusEditBoxes", 10, 2);
-function ipfPostStatusEditBoxes($arr, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_status');
+add_filter("prth_edit_boxes", "prthPostStatusEditBoxes", 10, 2);
+function prthPostStatusEditBoxes($arr, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_status');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
     $statuses = get_post_statuses();
-    if (!get_post_status() == "publish" && !ipfCanPublish()) {
+    if (!get_post_status() == "publish" && !prthCanPublish()) {
         unset($statuses["publish"]);
     }
     $html = "<select>";
@@ -223,16 +223,16 @@ function ipfPostStatusEditBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfPostStatusAddBoxes", 10, 4);
-function ipfPostStatusAddBoxes($arr, $restr, $tag, $postType) {
-    $restr = ipfRestrictionGet($restr, 'post_status');
+add_filter("prth_add_boxes", "prthPostStatusAddBoxes", 10, 4);
+function prthPostStatusAddBoxes($arr, $restr, $tag, $postType) {
+    $restr = prthRestrictionGet($restr, 'post_status');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
     $statuses = get_post_statuses();
-    if (!get_post_status() == "publish" && !ipfCanPublishType($postType)) {
+    if (!get_post_status() == "publish" && !prthCanPublishType($postType)) {
         unset($statuses["publish"]);
     }
     $html = "<select>";
@@ -251,16 +251,16 @@ function ipfPostStatusAddBoxes($arr, $restr, $tag, $postType) {
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfPostStatusEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfPostStatusEdit", 10, 3);
-function ipfPostStatusEdit($result, $boxData, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_status');
+add_filter("prth_edit_post", "prthPostStatusEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthPostStatusEdit", 10, 3);
+function prthPostStatusEdit($result, $boxData, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_status');
 
-    if (!ipfRestrictionAllowed($restr)) {
+    if (!prthRestrictionAllowed($restr)) {
         return $result;
     }
 
-    $forcedValue = ipfRestrictionGet($restr, 'force_value');
+    $forcedValue = prthRestrictionGet($restr, 'force_value');
     if (isset($forcedValue)) {
         $result["post_data"]["post_status"] = $forcedValue;
         return $result;
@@ -268,8 +268,8 @@ function ipfPostStatusEdit($result, $boxData, $restr) {
 
     if (!empty($boxData['post_status']) && !empty($boxData['post_status']['post_statusval']) ) {
         if ($boxData['post_status']['post_statusval'] == "publish") {
-            if (isset($result["post_data"]["ID"]) && !ipfCanPublish() || !isset($result["post_data"]["ID"]) && !ipfCanPublishType($result["post_data"]["post_type"])) {
-                $result["warnigs"][] = __("You do not have permission to publish this post", "ipf");
+            if (isset($result["post_data"]["ID"]) && !prthCanPublish() || !isset($result["post_data"]["ID"]) && !prthCanPublishType($result["post_data"]["post_type"])) {
+                $result["warnigs"][] = __("You do not have permission to publish this post", "prth");
             }
         }
         $result["post_data"]["post_status"] = $boxData['post_status']['post_statusval'];
@@ -278,11 +278,11 @@ function ipfPostStatusEdit($result, $boxData, $restr) {
 }
 
 // author
-add_filter("ipf_edit_boxes", "ipfAuthorEditBoxes", 10, 3);
-function ipfAuthorEditBoxes($arr, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_author');
+add_filter("prth_edit_boxes", "prthAuthorEditBoxes", 10, 3);
+function prthAuthorEditBoxes($arr, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_author');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
@@ -298,12 +298,12 @@ function ipfAuthorEditBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfAuthorEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfAuthorEdit", 10, 3);
-function ipfAuthorEdit($result, $boxData, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_status');
+add_filter("prth_edit_post", "prthAuthorEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthAuthorEdit", 10, 3);
+function prthAuthorEdit($result, $boxData, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_status');
 
-    if (!ipfRestrictionAllowed($restr)) {
+    if (!prthRestrictionAllowed($restr)) {
         return $result;
     }
 
@@ -314,11 +314,11 @@ function ipfAuthorEdit($result, $boxData, $restr) {
 }
 
 // parent page
-add_filter("ipf_edit_boxes", "ipfParentPageEditBoxes", 10, 2);
-function ipfParentPageEditBoxes($arr, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_parent');
+add_filter("prth_edit_boxes", "prthParentPageEditBoxes", 10, 2);
+function prthParentPageEditBoxes($arr, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_parent');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
@@ -341,11 +341,11 @@ function ipfParentPageEditBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfParentPageAddBoxes", 10, 4);
-function ipfParentPageAddBoxes($arr, $post_type, $tag, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_parent');
+add_filter("prth_add_boxes", "prthParentPageAddBoxes", 10, 4);
+function prthParentPageAddBoxes($arr, $post_type, $tag, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_parent');
 
-    if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+    if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
         return $arr;
     }
 
@@ -358,7 +358,7 @@ function ipfParentPageAddBoxes($arr, $post_type, $tag, $restr) {
         }
         $html .= '</select>';
         $arr["parentPage"] = array(
-            "title" => __("Parent Page", "ipf"),
+            "title" => __("Parent Page", "prth"),
             "boxes" => array("parentpageval" => array(
                 "html" => $html
             ))
@@ -368,12 +368,12 @@ function ipfParentPageAddBoxes($arr, $post_type, $tag, $restr) {
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfParentPageEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfParentPageEdit", 10, 3);
-function ipfParentPageEdit($result, $boxData, $restr) {
-    $restr = ipfRestrictionGet($restr, 'post_parent');
+add_filter("prth_edit_post", "prthParentPageEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthParentPageEdit", 10, 3);
+function prthParentPageEdit($result, $boxData, $restr) {
+    $restr = prthRestrictionGet($restr, 'post_parent');
 
-    if (!ipfRestrictionAllowed($restr)) {
+    if (!prthRestrictionAllowed($restr)) {
         return $result;
     }
 
@@ -389,9 +389,9 @@ function ipfParentPageEdit($result, $boxData, $restr) {
 
 
 // content
-//add_filter("ipf_edit_boxes", "ipfContentEditBoxes", 10, 2);
-//function ipfContentEditBoxes($arr, $restr) {
-//    if (!ipfRestrictionAllowed($restr, 'post_content')) {
+//add_filter("prth_edit_boxes", "prthContentEditBoxes", 10, 2);
+//function prthContentEditBoxes($arr, $restr) {
+//    if (!prthRestrictionAllowed($restr, 'post_content')) {
 //        return $arr;
 //    }
 //
@@ -405,26 +405,26 @@ function ipfParentPageEdit($result, $boxData, $restr) {
 //    return $arr;
 //}
 
-add_filter("ipf_add_boxes", "ipfContentAddBoxes", 50, 2);
-function ipfContentAddBoxes($arr, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_content')) {
+add_filter("prth_add_boxes", "prthContentAddBoxes", 50, 2);
+function prthContentAddBoxes($arr, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_content')) {
         return $arr;
     }
 
     $arr["content"] = array(
         "title" => __("Content"),
         "boxes" => array("contentval" => array(
-            "html" => '<textarea placeholder="'.__('Write some content. You will be able to change it later.', 'ipf').'"/>',
-            "validateJs" => 'ipf.validateNotEmpty'
+            "html" => '<textarea placeholder="'.__('Write some content. You will be able to change it later.', 'prth').'"/>',
+            "validateJs" => 'prth.validateNotEmpty'
         ))
     );
     return $arr;
 }
 
-//add_filter("ipf_edit_post", "ipfContentEdit", 10, 3);
-add_filter("ipf_add_post_before_create", "ipfContentEdit", 50, 3);
-function ipfContentEdit($result, $boxData, $restr) {
-    if (!ipfRestrictionAllowed($restr, 'post_content')) {
+//add_filter("prth_edit_post", "prthContentEdit", 10, 3);
+add_filter("prth_add_post_before_create", "prthContentEdit", 50, 3);
+function prthContentEdit($result, $boxData, $restr) {
+    if (!prthRestrictionAllowed($restr, 'post_content')) {
         return $result;
     }
 
@@ -436,35 +436,35 @@ function ipfContentEdit($result, $boxData, $restr) {
 
 
 // seo ultimate
-function ipfSeoUltimateHtml() {
+function prthSeoUltimateHtml() {
     $id = str_replace(".", "", "id".microtime(true)."-".random_int(0, 1000));
     ob_start();
     ?>
-    <div class="ipfTabs">
+    <div class="prthTabs">
         <ul>
-            <li><a href="#search-eng-<?php echo $id;?>"><?php esc_html_e("Search Engine Settings", "ipf"); ?></a></li>
-            <li><a href="#social-med-<?php echo $id;?>"><?php esc_html_e("Social Media Settings", "ipf"); ?></a></li>
+            <li><a href="#search-eng-<?php echo $id;?>"><?php esc_html_e("Search Engine Settings", "prth"); ?></a></li>
+            <li><a href="#social-med-<?php echo $id;?>"><?php esc_html_e("Social Media Settings", "prth"); ?></a></li>
         </ul>
         <div id="search-eng-<?php echo $id;?>" >
-            <label><?php esc_html_e("Search Engine Title", "ipf"); ?></label>
-            <input vf-model="atom:_su_title" type="text" title="<?php esc_attr_e("Search Engine Title", "ipf"); ?>"
+            <label><?php esc_html_e("Search Engine Title", "prth"); ?></label>
+            <input vf-model="atom:_su_title" type="text" title="<?php esc_attr_e("Search Engine Title", "prth"); ?>"
                    style="width:100%; margin-bottom:0.5em;">
-            <label><?php esc_html_e("Search Engine Description", "ipf"); ?></label>
-            <textarea vf-model="atom:_su_description" title="<?php esc_attr_e("Search Engine Description", "ipf"); ?>" style="width:100%"></textarea>
+            <label><?php esc_html_e("Search Engine Description", "prth"); ?></label>
+            <textarea vf-model="atom:_su_description" title="<?php esc_attr_e("Search Engine Description", "prth"); ?>" style="width:100%"></textarea>
         </div>
         <div id="social-med-<?php echo $id;?>" >
-            <label><?php esc_html_e("Social Media Title", "ipf"); ?></label>
-            <input vf-model="atom:_su_og_title" type="text" title="<?php esc_attr_e("Social Media Title", "ipf"); ?>"
+            <label><?php esc_html_e("Social Media Title", "prth"); ?></label>
+            <input vf-model="atom:_su_og_title" type="text" title="<?php esc_attr_e("Social Media Title", "prth"); ?>"
                    style="width:100%; margin-bottom:0.5em;">
-            <label><?php esc_html_e("Social Media Description", "ipf"); ?></label>
-            <textarea vf-model="atom:_su_og_description" title="<?php esc_attr_e("Social Media Description", "ipf"); ?>" style="width:100%; margin-bottom:0.5em;"></textarea>
-            <label><?php esc_html_e("Social Media Image", "ipf"); ?></label>
+            <label><?php esc_html_e("Social Media Description", "prth"); ?></label>
+            <textarea vf-model="atom:_su_og_description" title="<?php esc_attr_e("Social Media Description", "prth"); ?>" style="width:100%; margin-bottom:0.5em;"></textarea>
+            <label><?php esc_html_e("Social Media Image", "prth"); ?></label>
             <div>
-                <input class="ipfSocMediaImgInput" vf-model="atom:_su_og_image" type="url" title="<?php esc_attr_e("Social Media Image", "ipf"); ?>"
+                <input class="prthSocMediaImgInput" vf-model="atom:_su_og_image" type="url" title="<?php esc_attr_e("Social Media Image", "prth"); ?>"
                        style="width:20em;">
                 <button
-                    onclick="ipf.openFileFrame(null, 'image', false, function (att) {jQuery('#social-med-<?php echo $id;?> .ipfSocMediaImgInput').val(att.url);});"
-                    type="button"><?php esc_html_e("Select Social Media Image", "ipf"); ?></button>
+                    onclick="prth.openFileFrame(null, 'image', false, function (att) {jQuery('#social-med-<?php echo $id;?> .prthSocMediaImgInput').val(att.url);});"
+                    type="button"><?php esc_html_e("Select Social Media Image", "prth"); ?></button>
             </div>
         </div>
     </div>
@@ -472,13 +472,13 @@ function ipfSeoUltimateHtml() {
     return ob_get_clean();
 }
 
-add_filter("ipf_edit_boxes", "ipfSeoUltimateEditBoxes", 90, 2);
-function ipfSeoUltimateEditBoxes($arr, $restr) {
+add_filter("prth_edit_boxes", "prthSeoUltimateEditBoxes", 90, 2);
+function prthSeoUltimateEditBoxes($arr, $restr) {
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if ( is_plugin_active( 'seo-ultimate/seo-ultimate.php' ) ) {
-        $restr = ipfRestrictionGet($restr, 'custom.seo_ultimate');
+        $restr = prthRestrictionGet($restr, 'custom.seo_ultimate');
 
-        if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+        if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
             return $arr;
         }
 
@@ -490,10 +490,10 @@ function ipfSeoUltimateEditBoxes($arr, $restr) {
         $data = esc_attr(json_encode(array("_su_title" => $su_title, "_su_description" => $su_description,
             "_su_og_title" => $su_og_title, "_su_og_description" => $su_og_description, "_su_og_image" => $su_og_image)));
 
-        $html = ipfSeoUltimateHtml();
+        $html = prthSeoUltimateHtml();
 
         $arr["seoUltimate"] = array(
-            "title" => __("SEO Ultimate", "ipf"),
+            "title" => __("SEO Ultimate", "prth"),
             "boxes" => array("seoultimateval" => array(
                 "html" => $html,
                 "getValueJs" => "(function () {return vf.getModel(this);})",
@@ -506,19 +506,19 @@ function ipfSeoUltimateEditBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_add_boxes", "ipfSeoUltimateAddBoxes", 90, 2);
-function ipfSeoUltimateAddBoxes($arr, $restr) {
+add_filter("prth_add_boxes", "prthSeoUltimateAddBoxes", 90, 2);
+function prthSeoUltimateAddBoxes($arr, $restr) {
     include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
     if ( is_plugin_active( 'seo-ultimate/seo-ultimate.php' ) ) {
-        $restr = ipfRestrictionGet($restr, 'custom.seo_ultimate');
+        $restr = prthRestrictionGet($restr, 'custom.seo_ultimate');
 
-        if (!ipfRestrictionAllowed($restr) || !ipfRestrictionGet($restr, 'show_ui', true)) {
+        if (!prthRestrictionAllowed($restr) || !prthRestrictionGet($restr, 'show_ui', true)) {
             return $arr;
         }
 
-        $html = ipfSeoUltimateHtml();
+        $html = prthSeoUltimateHtml();
         $arr["seoUltimate"] = array(
-            "title" => __("SEO Ultimate", "ipf"),
+            "title" => __("SEO Ultimate", "prth"),
             "boxes" => array("seoultimateval" => array(
                 "html" => $html,
                 "getValueJs" => "(function () {return vf.getModel(this);})",
@@ -531,16 +531,16 @@ function ipfSeoUltimateAddBoxes($arr, $restr) {
     return $arr;
 }
 
-add_filter("ipf_edit_post", "ipfSeoUltimateEdit", 90, 3);
-add_filter("ipf_add_post_before_create", "ipfSeoUltimateEdit", 10, 3);
-function ipfSeoUltimateEdit($result, $boxData, $restr) {
-    $restr = ipfRestrictionGet($restr, 'custom.seo_ultimate');
+add_filter("prth_edit_post", "prthSeoUltimateEdit", 90, 3);
+add_filter("prth_add_post_before_create", "prthSeoUltimateEdit", 10, 3);
+function prthSeoUltimateEdit($result, $boxData, $restr) {
+    $restr = prthRestrictionGet($restr, 'custom.seo_ultimate');
 
-    if (!ipfRestrictionAllowed($restr)) {
+    if (!prthRestrictionAllowed($restr)) {
         return $result;
     }
 
-    if (ipfRestrictionGet($restr, "from_post_data", false)) {
+    if (prthRestrictionGet($restr, "from_post_data", false)) {
         $result["post_data"]["meta_input"]["_su_description"] = $result["post_data"]["meta_input"]["_su_og_description"]
             = isset($result["post_data"]["post_content"]) ? substr($result["post_data"]["meta_input"], 0, 160) : get_the_excerpt();
         $result["post_data"]["meta_input"]['_su_og_image'] = isset($result["post_data"]["meta_input"]['_thumbnail_id'])
@@ -561,8 +561,8 @@ function ipfSeoUltimateEdit($result, $boxData, $restr) {
 }
 
 // show create confirm dialog
-add_filter('ipf_add_post_after_create', 'ipfCreateConfirm', 10, 1);
-function ipfCreateConfirm($result) {
-    $result['actionsJs'][] = 'ipf.showCreatePostConfirm';
+add_filter('prth_add_post_after_create', 'prthCreateConfirm', 10, 1);
+function prthCreateConfirm($result) {
+    $result['actionsJs'][] = 'prth.showCreatePostConfirm';
     return $result;
 }

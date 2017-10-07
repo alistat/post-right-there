@@ -23,90 +23,89 @@ along with Rich In Place Front Post. If not, see http://www.gnu.org/licenses/gpl
 */
 defined( 'ABSPATH' ) or die( '' );
 
-define('IPF', plugin_dir_path(__FILE__));
+define('PRTH', plugin_dir_path(__FILE__));
 
-add_action( 'init', 'ipfLoadTextdomain' );
-function ipfLoadTextdomain() {
-    load_plugin_textdomain( 'ipf', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+add_action( 'init', 'prthLoadTextdomain' );
+function prthLoadTextdomain() {
+    load_plugin_textdomain( 'prth', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 }
 
+function prthFilePath($path) {
+    return plugins_url($path, __FILE__);
+}
 
 // ---------- Enqueue the stuff ----------
-add_action( 'wp_enqueue_scripts', 'ipfEnqueueScripts' );
-function ipfEnqueueScripts() {
-    if (ipfShouldLoad()) {
-        wp_enqueue_script('ipfData', plugins_url('/js/data.js', __FILE__), array('jquery'), "0.4.1", true);
-        wp_enqueue_script('ipfEditor', plugins_url('/js/editor.js', __FILE__), array('jquery'), "0.4.1", true);
-        wp_enqueue_script('ipf', plugins_url('/js/ipf.js', __FILE__), array('jquery', 'ipfEditor'), "0.4.1", true);
-        wp_enqueue_style('ipf-css', plugins_url('/css/ipf.css', __FILE__), array(), "0.4.1");
+add_action( 'wp_enqueue_scripts', 'prthEnqueueScripts' );
+function prthEnqueueScripts() {
+    if (prthShouldLoad()) {
+        wp_enqueue_script('prthData', prthFilePath('/js/data.js'), array('jquery'), "0.4.1", true);
+        wp_enqueue_script('prthEditor', prthFilePath('/js/editor.js'), array('jquery'), "0.4.1", true);
+        wp_enqueue_script('prth', prthFilePath('/js/prth.js'), array('jquery', 'prthEditor'), "0.4.1", true);
+        wp_enqueue_style('prth-css', prthFilePath('/css/prth.css'), array(), "0.4.1");
 
         // vf
-        wp_enqueue_script( 'vf', plugins_url( '/js/lib/vf.js', __FILE__ ), array( 'jquery' ), null, true);
+        wp_enqueue_script( 'prth-vf', prthFilePath( '/js/lib/vf.js'), array( 'jquery' ), null, true);
 
         // jquery
         wp_enqueue_script('jquery-ui-dialog');
         wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_style('jquery-ui-base', "//code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css");
 
-        // tinymce editor
-//        wp_enqueue_script('tinymce', "//cdn.tinymce.com/4/tinymce.min.js", array(), null, true);
-
         // codemirror
-        wp_enqueue_script('codemirror', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/codemirror.min.js", array(), "5.19.0", true);
-        wp_enqueue_style('codemirror-style', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/codemirror.min.css");
-        wp_enqueue_script('codemirror-htmlmixed', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/mode/htmlmixed/htmlmixed.min.js", array('codemirror'), "5.19.0", true);
-        wp_enqueue_script('codemirror-javascript', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/mode/javascript/javascript.min.js", array('codemirror'), "5.19.0", true);
-        wp_enqueue_script('codemirror-css', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/mode/css/css.min.js", array('codemirror'), "5.19.0", true);
-        wp_enqueue_script('codemirror-xml', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/mode/xml/xml.min.js", array('codemirror'), "5.19.0", true);
-//        wp_enqueue_script('codemirror-dialog', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/addon/dialog/dialog.min.js", array('codemirror'), "5.19.0", true);
-        wp_enqueue_script('codemirror-matchbrackets', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/addon/edit/matchbrackets.min.js", array('codemirror'), "5.19.0", true);
-        wp_enqueue_script('codemirror-active-line', "//cdnjs.cloudflare.com/ajax/libs/codemirror/5.19.0/addon/selection/active-line.min.js", array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror', prthFilePath("/js/lib/codemirror/codemirror.min.js"), array(), "5.19.0", true);
+        wp_enqueue_style('codemirror-style', prthFilePath("/css/lib/codemirror.min.css"));
+        wp_enqueue_script('codemirror-htmlmixed', prthFilePath("/js/lib/codemirror/htmlmixed.min.js"), array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror-javascript', prthFilePath("/js/lib/codemirror/javascript.min.js"), array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror-css', prthFilePath("/js/lib/codemirror/css.min.js"), array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror-xml', prthFilePath("/js/lib/codemirror/xml.min.js"), array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror-matchbrackets', prthFilePath("/js/lib/codemirror/matchbrackets.min.js"), array('codemirror'), "5.19.0", true);
+        wp_enqueue_script('codemirror-active-line', prthFilePath("/js/lib/codemirror/active-line.min.js"), array('codemirror'), "5.19.0", true);
 
         wp_enqueue_media();
 
         // chosen plugin for multiselect dropdowns
-        wp_enqueue_script('chosen.jquery', plugins_url('/js/lib/chosen.jquery.min.js', __FILE__), array('jquery'), null, true);
-        wp_enqueue_style('chosen-style', plugins_url('/css/lib/chosen.min.css', __FILE__));
+        wp_enqueue_script('chosen.jquery', prthFilePath('/js/lib/chosen.jquery.min.js'), array('jquery'), null, true);
+        wp_enqueue_style('chosen-style', prthFilePath('/css/lib/chosen.min.css'));
 
         // toastr for notifications
-        wp_enqueue_script('toastr', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js", array('jquery', 'ipf'), "2.1.3", true);
-        wp_enqueue_style('toastr-style', "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css", array(), "2.1.3");
+        wp_enqueue_script('toastr', prthFilePath("/js/lib/toastr.min.js"), array('jquery', 'prth'), "2.1.3", true);
+        wp_enqueue_style('toastr-style', prthFilePath("/css/lib/toastr.min.css"), array(), "2.1.3");
 
-        $lang = ipfLangJs();
-        wp_localize_script('ipf', "ipfLang", $lang);
-        wp_localize_script('ipfEditor', "ipfLang", $lang);
+        $lang = prthLangJs();
+        wp_localize_script('prth', "prthLang", $lang);
+        wp_localize_script('prthEditor', "prthLang", $lang);
     }
 }
 
-function ipfSettingsEnqueue($hook) {
-    if ( 'settings_page_ipf_settings' != $hook ) {
+function prthSettingsEnqueue($hook) {
+    if ( 'settings_page_prth_settings' != $hook ) {
         return;
     }
 
-    wp_enqueue_script( 'vf', plugins_url( '/js/lib/vf.js', __FILE__ ), array( 'jquery' ), null, false);
-    wp_enqueue_script('chosen.jquery', plugins_url('/js/lib/chosen.jquery.min.js', __FILE__), array('jquery'), null, false);
-    wp_enqueue_style('chosen-style', plugins_url('/css/lib/chosen.min.css', __FILE__));
+    wp_enqueue_script( 'prth-vf', prthFilePath( '/js/lib/vf.js'), array( 'jquery' ), null, false);
+    wp_enqueue_script('chosen.jquery', prthFilePath('/js/lib/chosen.jquery.min.js'), array('jquery'), null, false);
+    wp_enqueue_style('chosen-style', prthFilePath('/css/lib/chosen.min.css'));
 }
-add_action( 'admin_enqueue_scripts', 'ipfSettingsEnqueue' );
+add_action( 'admin_enqueue_scripts', 'prthSettingsEnqueue' );
 
 
-function ipfGetSettings() {
-    return get_option("ipf_settings", array("postTypes" => array()));
-}
-
-function ipfSetSettings($settings) {
-    update_option('ipf_settings', $settings);
+function prthGetSettings() {
+    return get_option("prth_settings", array("postTypes" => array()));
 }
 
+function prthSetSettings($settings) {
+    update_option('prth_settings', $settings);
+}
 
-function ipfShouldLoad() {
-    return apply_filters("ipf_should_load", is_user_logged_in() && ((current_user_can('edit_posts') || current_user_can('edit_pages')
+
+function prthShouldLoad() {
+    return apply_filters("prth_should_load", is_user_logged_in() && ((current_user_can('edit_posts') || current_user_can('edit_pages')
             || current_user_can('edit_others_posts')) || current_user_can('edit_others_pages')));
     // ya nevah know what 's goin' on
 }
 
 
-function ipfGetEditRestrictions($post = null, $tag=null) {
+function prthGetEditRestrictions($post = null, $tag=null) {
     if (is_numeric($post)) {
         $postId = intval($post);
     } else if (is_array($post)) {
@@ -147,31 +146,31 @@ function ipfGetEditRestrictions($post = null, $tag=null) {
         ),
     );
 
-    return apply_filters("ipf_get_edit_restrictions", $restrictions, $postId, $tag);
+    return apply_filters("prth_get_edit_restrictions", $restrictions, $postId, $tag);
 }
 
 
-function ipfCanEdit($post = null, $tag = null) {
-    $restrictions = ipfGetEditRestrictions($post, $tag);
+function prthCanEdit($post = null, $tag = null) {
+    $restrictions = prthGetEditRestrictions($post, $tag);
     return $restrictions['allow'];
 }
 
-function ipfNoEditExcludedTypes($restrictions, $postId) {
+function prthNoEditExcludedTypes($restrictions, $postId) {
     if (!$restrictions['allow']) return $restrictions;
-    $settings = ipfGetSettings();
+    $settings = prthGetSettings();
     $restrictions['allow'] = !in_array(get_post_type($postId), $settings["postTypes"]);
     return $restrictions;
 }
-add_filter("ipf_get_edit_restrictions", "ipfNoEditExcludedTypes", 10, 2);
+add_filter("prth_get_edit_restrictions", "prthNoEditExcludedTypes", 10, 2);
 
-function ipfCanPublish($post = null, $tag = null) {
-    $restrictions = ipfGetEditRestrictions($post, $tag);
+function prthCanPublish($post = null, $tag = null) {
+    $restrictions = prthGetEditRestrictions($post, $tag);
     return empty($restrictions['post_status'])
         || ($restrictions['post_status']['allow']
             && (empty($restrictions['post_status']['values']) || in_array("publish", $restrictions['post_status']['values'])) );
 }
 
-function ipfGetCreateRestrictions($postType, $tag) {
+function prthGetCreateRestrictions($postType, $tag) {
     $canCreate = current_user_can(get_post_type_object($postType)->cap->create_posts);
     $canPublish = current_user_can(get_post_type_object($postType)->cap->publish_posts);
 
@@ -198,38 +197,38 @@ function ipfGetCreateRestrictions($postType, $tag) {
         ),
     );
 
-    return apply_filters("ipf_get_create_restrictions", $restrictions, $postType, $tag);
+    return apply_filters("prth_get_create_restrictions", $restrictions, $postType, $tag);
 }
 
-function ipfCanCreateType($postType, $tag=null) {
-    $restrictions = ipfGetCreateRestrictions($postType, $tag);
+function prthCanCreateType($postType, $tag=null) {
+    $restrictions = prthGetCreateRestrictions($postType, $tag);
     return $restrictions['allow'];
 }
 
-function ipfCanPublishType($postType, $tag=null) {
-    $restrictions = ipfGetCreateRestrictions($postType, $tag);
+function prthCanPublishType($postType, $tag=null) {
+    $restrictions = prthGetCreateRestrictions($postType, $tag);
     return empty($restrictions['post_status'])
     || ($restrictions['post_status']['allow']
         && (empty($restrictions['post_status']['values']) || in_array("publish", $restrictions['post_status']['values'])) );
 }
 
-function ipfCanDeleteAttachment($attachmentId) {
+function prthCanDeleteAttachment($attachmentId) {
     if (!is_numeric($attachmentId)) {
         return false;
     }
-    return apply_filters('ipf_can_delete_attachment', current_user_can('delete_post', $attachmentId), $attachmentId);
+    return apply_filters('prth_can_delete_attachment', current_user_can('delete_post', $attachmentId), $attachmentId);
 }
 
-function ipfCanChangeSettings() {
-    return apply_filters("ipf_can_change_options", current_user_can("manage_options"));
+function prthCanChangeSettings() {
+    return apply_filters("prth_can_change_options", current_user_can("manage_options"));
 }
 
-function ipfRestrictionAllowed($restrictions, $restriction=null) {
-    $restr = ipfRestrictionGet($restrictions, $restriction);
+function prthRestrictionAllowed($restrictions, $restriction=null) {
+    $restr = prthRestrictionGet($restrictions, $restriction);
     return !isset($restr['allow']) || $restr['allow'];
 }
 
-function ipfRestrictionGet($restrictions, $restriction=null, $default=null) {
+function prthRestrictionGet($restrictions, $restriction=null, $default=null) {
     if (empty($restriction)) {
         return $restrictions;
     }
@@ -248,15 +247,15 @@ function ipfRestrictionGet($restrictions, $restriction=null, $default=null) {
     return isset($arr[$restriction[$len-1]]) ? $arr[$restriction[$len-1]] : $default;
 }
 
-add_action( 'the_post', 'ipfFillPostRestrictions'); // called in the loop for each post to set extra post data
-function ipfFillPostRestrictions($post) {
-    if (ipfShouldLoad()) {
-        $post->ipfRestrictions = ipfGetEditRestrictions($post);
+add_action( 'the_post', 'prthFillPostRestrictions'); // called in the loop for each post to set extra post data
+function prthFillPostRestrictions($post) {
+    if (prthShouldLoad()) {
+        $post->prthRestrictions = prthGetEditRestrictions($post);
     }
 }
 
-include( IPF . 'admin.php');
-include( IPF . 'template-functions.php');
-include( IPF . 'controller.php');
-include( IPF . 'built-in-edit-boxes.php');
-include( IPF . 'lang/langjs.php');
+include( PRTH . 'admin.php');
+include( PRTH . 'template-functions.php');
+include( PRTH . 'controller.php');
+include( PRTH . 'built-in-edit-boxes.php');
+include( PRTH . 'lang/langjs.php');

@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) or die( '' );
 
 
-function ipfSendResponse($resp) {
+function prthSendResponse($resp) {
     http_response_code($resp['status']);
     if (isset($resp['error'])) {
         wp_send_json(array('error' => $resp['error']));
@@ -13,77 +13,77 @@ function ipfSendResponse($resp) {
     }
 }
 
-function ipfEnsureEditablePostIdHtml($post_id, $tag=null) {
+function prthEnsureEditablePostIdHtml($post_id, $tag=null) {
     if (empty($post_id) || !is_numeric($post_id)) {
         http_response_code(400);
-        echo '<span class="error">'.sprintf(__("Unrecognizable post id %s. Please contact support.", "ipf"), $post_id).'</span>';
+        echo '<span class="error">'.sprintf(__("Unrecognizable post id %s. Please contact support.", "prth"), $post_id).'</span>';
         wp_die();
     }
     if (!get_post($post_id)) {
         http_response_code(404);
-        echo '<span class="error">'.__("Post not found.", "ipf").'</span>';
+        echo '<span class="error">'.__("Post not found.", "prth").'</span>';
         wp_die();
     }
-    $restr = ipfGetEditRestrictions($post_id, $tag);
-    if (!ipfRestrictionAllowed($restr)) {
+    $restr = prthGetEditRestrictions($post_id, $tag);
+    if (!prthRestrictionAllowed($restr)) {
         http_response_code(403);
-        echo '<span class="error">'.__("You are not allowed to edit this post.", "ipf").'</span>';
+        echo '<span class="error">'.__("You are not allowed to edit this post.", "prth").'</span>';
         wp_die();
     }
     return $restr;
 }
 
-function ipfEnsureJsonHtml($string) {
+function prthEnsureJsonHtml($string) {
     $data = json_decode($string, true);
     if ($data === null) {
         http_response_code(400);
-        echo '<span class="error">'.__("Invalid  json. Please contact support.", "ipf").'</span>'
+        echo '<span class="error">'.__("Invalid  json. Please contact support.", "prth").'</span>'
            .'<br/><code>'.esc_html($string).'</code>';
         wp_die();
     }
     return $data;
 }
 
-function ipfEnsureJson($string) {
+function prthEnsureJson($string) {
     $data = json_decode($string, true);
     if ($data === null) {
-        ipfSendResponse(array("status" => 400, "error" => sprintf(__("Invalid  json.  Please contact support. %s"), $string)));
+        prthSendResponse(array("status" => 400, "error" => sprintf(__("Invalid  json.  Please contact support. %s"), $string)));
     }
     return $data;
 }
 
 
 // CONTENT
-add_action( 'wp_ajax_ipf_get_the_content', 'ipf_get_the_content' );
-function ipf_get_the_content() {
+add_action( 'wp_ajax_prth_get_the_content', 'prth_get_the_content' );
+function prth_get_the_content() {
     $post_id = $_GET['post'];
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post_id, $tag);
+    $restr = prthGetEditRestrictions($post_id, $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_content")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_content")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
 
     $content = get_post_field('post_content', $post_id, 'edit');
     if ( has_filter( 'the_content', 'wpautop' )) {
         $content = shortcode_unautop(wpautop($content));
     }
-    ipfSendResponse(array('content' => $content, 'status' => 200));
+    prthSendResponse(array('content' => $content, 'status' => 200));
 }
 
-add_action( 'wp_ajax_ipf_set_the_content', 'ipf_set_the_content' );
-function ipf_set_the_content() {
+add_action( 'wp_ajax_prth_set_the_content', 'prth_set_the_content' );
+function prth_set_the_content() {
     $post = json_decode(stripslashes($_POST['post']), true);
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post['ID'], $tag);
+    $restr = prthGetEditRestrictions($post['ID'], $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_content")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_content")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
 
     $post_id = wp_update_post($post);
     if (is_wp_error($post_id)) {
-        ipfSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
+        prthSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
     }
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     $content = '';
@@ -91,39 +91,39 @@ function ipf_set_the_content() {
         $content = apply_filters('the_content', get_the_content());;
     endwhile;
     wp_reset_query();
-    ipfSendResponse(array('status'=>200, 'content'=>$content));
+    prthSendResponse(array('status'=>200, 'content'=>$content));
 }
 
 
 // TITLE
-add_action( 'wp_ajax_ipf_get_the_title', 'ipf_get_the_title' );
-function ipf_get_the_title() {
+add_action( 'wp_ajax_prth_get_the_title', 'prth_get_the_title' );
+function prth_get_the_title() {
     $post_id = $_GET['post'];
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post_id, $tag);
+    $restr = prthGetEditRestrictions($post_id, $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_title")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_title")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
     $title = get_post_field('post_title', $post_id, 'edit');
     if ( has_filter( 'the_title', 'trim' )) {
         $title = trim($title);
     }
-    ipfSendResponse(array('content' => $title, 'status' => 200));
+    prthSendResponse(array('content' => $title, 'status' => 200));
 }
 
-add_action( 'wp_ajax_ipf_set_the_title', 'ipf_set_the_title' );
-function ipf_set_the_title() {
+add_action( 'wp_ajax_prth_set_the_title', 'prth_set_the_title' );
+function prth_set_the_title() {
     $post = json_decode(stripslashes($_POST['post']), true);
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post['ID'], $tag);
+    $restr = prthGetEditRestrictions($post['ID'], $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_title")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_title")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
     $post_id = wp_update_post($post);
     if (is_wp_error($post_id)) {
-        ipfSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
+        prthSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
     }
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     $title = '';
@@ -131,19 +131,19 @@ function ipf_set_the_title() {
         $title = get_the_title();
     endwhile;
     wp_reset_query();
-    ipfSendResponse(array('status'=>200, 'content'=>$title));
+    prthSendResponse(array('status'=>200, 'content'=>$title));
 }
 
 
 // EXCERPT
-add_action( 'wp_ajax_ipf_get_the_excerpt', 'ipf_get_the_excerpt' );
-function ipf_get_the_excerpt() {
+add_action( 'wp_ajax_prth_get_the_excerpt', 'prth_get_the_excerpt' );
+function prth_get_the_excerpt() {
     $post_id = $_GET['post'];
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post_id, $tag);
+    $restr = prthGetEditRestrictions($post_id, $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_excerpt")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_excerpt")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
 
     $excerpt = '';
@@ -155,21 +155,21 @@ function ipf_get_the_excerpt() {
     if ( has_filter( 'the_excerpt', 'wpautop' )) {
         $excerpt = shortcode_unautop(wpautop($excerpt));
     }
-    ipfSendResponse(array('content' => $excerpt, 'status' => 200));
+    prthSendResponse(array('content' => $excerpt, 'status' => 200));
 }
 
-add_action( 'wp_ajax_ipf_set_the_excerpt', 'ipf_set_the_excerpt' );
-function ipf_set_the_excerpt() {
+add_action( 'wp_ajax_prth_set_the_excerpt', 'prth_set_the_excerpt' );
+function prth_set_the_excerpt() {
     $post = json_decode(stripslashes($_POST['post']), true);
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post['ID'], $tag);
+    $restr = prthGetEditRestrictions($post['ID'], $tag);
 
-    if (!ipfRestrictionAllowed($restr, "post_excerpt")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "post_excerpt")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
     $post_id = wp_update_post($post);
     if (is_wp_error($post_id)) {
-        ipfSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
+        prthSendResponse(array('status' => 500, 'error' => implode(", ", $post_id->get_error_messages())));
     }
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     $excerpt = '';
@@ -177,81 +177,81 @@ function ipf_set_the_excerpt() {
         $excerpt = get_the_excerpt();
     endwhile;
     wp_reset_query();
-    ipfSendResponse(array('status'=>200, 'content'=>$excerpt));
+    prthSendResponse(array('status'=>200, 'content'=>$excerpt));
 }
 
 
 // THUMBNAIL
-add_action( 'wp_ajax_ipf_set_the_thumbnail', 'ipf_set_the_thumbnail' );
-function ipf_set_the_thumbnail() {
+add_action( 'wp_ajax_prth_set_the_thumbnail', 'prth_set_the_thumbnail' );
+function prth_set_the_thumbnail() {
     $post = json_decode(stripslashes($_POST['post']), true);
     $tag = stripslashes($_GET['tag']);
     if (empty($post['ID']) || empty($post['thumb']) || !is_numeric($post['ID']) || !is_numeric($post['thumb'])) {
-        ipfSendResponse(array('status' => 400, 'error' => __('No post ID or thumb id. Please contact support.', "ipf")));
+        prthSendResponse(array('status' => 400, 'error' => __('No post ID or thumb id. Please contact support.', "prth")));
     }
 
-    $restr = ipfGetEditRestrictions($post['ID'], $tag);
-    if (!ipfRestrictionAllowed($restr, "thumbnail")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    $restr = prthGetEditRestrictions($post['ID'], $tag);
+    if (!prthRestrictionAllowed($restr, "thumbnail")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
     if (set_post_thumbnail($post['ID'], $post['thumb'])) {
-        ipfSendResponse(array('status'=>200, 'content'=>wp_get_attachment_image($post['thumb'], 'post-thumbnail')));
+        prthSendResponse(array('status'=>200, 'content'=>wp_get_attachment_image($post['thumb'], 'post-thumbnail')));
     } else {
-        ipfSendResponse(array('status' => 500, 'error' => __("Could not set post thumbnail. Please contact support.", "ipf")));
+        prthSendResponse(array('status' => 500, 'error' => __("Could not set post thumbnail. Please contact support.", "prth")));
     }
 }
 
-add_action( 'wp_ajax_ipf_remove_the_thumbnail', 'ipf_remove_the_thumbnail' );
-function ipf_remove_the_thumbnail() {
+add_action( 'wp_ajax_prth_remove_the_thumbnail', 'prth_remove_the_thumbnail' );
+function prth_remove_the_thumbnail() {
     $post_id = $_GET['post'];
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetEditRestrictions($post_id, $tag);
+    $restr = prthGetEditRestrictions($post_id, $tag);
 
-    if (!ipfRestrictionAllowed($restr, "thumbnail")) {
-        ipfSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'ipf')));
+    if (!prthRestrictionAllowed($restr, "thumbnail")) {
+        prthSendResponse(array('status' => 403, 'error' => __('Not Allowed', 'prth')));
     }
     if ($_GET['remove'] == "true") {
         $thumbId = get_post_meta($post_id, '_thumbnail_id', true);
-        if (!ipfCanDeleteAttachment($thumbId)) {
-            ipfSendResponse(array('status' => 403, 'error' => __("You do not have permission to delete this image completely.", "ipf")));
+        if (!prthCanDeleteAttachment($thumbId)) {
+            prthSendResponse(array('status' => 403, 'error' => __("You do not have permission to delete this image completely.", "prth")));
         }
         $result = wp_delete_attachment($thumbId);
     } else {
         $result = delete_post_thumbnail($post_id);
     }
     if ($result) {
-        ipfSendResponse(array('content' => "ok", 'status' => 200));
+        prthSendResponse(array('content' => "ok", 'status' => 200));
     } else {
-        ipfSendResponse(array('error' => __("Could remove thumbnail", "ipf"), 'status' => 500));
+        prthSendResponse(array('error' => __("Could remove thumbnail", "prth"), 'status' => 500));
     }
 }
 
-add_action( 'wp_ajax_ipf_can_delete_the_thumbnail', 'ipf_can_delete_the_thumbnail' );
-function ipf_can_delete_the_thumbnail() {
+add_action( 'wp_ajax_prth_can_delete_the_thumbnail', 'prth_can_delete_the_thumbnail' );
+function prth_can_delete_the_thumbnail() {
     $post_id = $_GET['post'];
     if (!is_numeric($post_id)) {
-        ipfSendResponse(array('status' => 400, 'error' => __('Numeric value expected for post. Please contact support.', "ipf")));
+        prthSendResponse(array('status' => 400, 'error' => __('Numeric value expected for post. Please contact support.', "prth")));
     }
     $thumbId = get_post_meta($post_id, '_thumbnail_id', true);
     if (!is_numeric($thumbId)) {
-        ipfSendResponse(array('status' => 200, 'content' => true));
+        prthSendResponse(array('status' => 200, 'content' => true));
     }
-    ipfSendResponse(array('status' => 200, 'content' => ipfCanDeleteAttachment($thumbId)));
+    prthSendResponse(array('status' => 200, 'content' => prthCanDeleteAttachment($thumbId)));
 }
 
 
 // ATTACHMENT
-add_action( 'wp_ajax_ipf_get_attachment_image', 'ipf_get_attachment_image' );
-function ipf_get_attachment_image() {
+add_action( 'wp_ajax_prth_get_attachment_image', 'prth_get_attachment_image' );
+function prth_get_attachment_image() {
     $image = wp_get_attachment_image($_GET['attachment'], 'large');
     if (empty($image)) {
-        ipfSendResponse(array('status' => 404, 'error' => __('Attachment not found', "ipf")));
+        prthSendResponse(array('status' => 404, 'error' => __('Attachment not found', "prth")));
     }
-    ipfSendResponse(array('content' => $image, 'status' => 200));
+    prthSendResponse(array('content' => $image, 'status' => 200));
 }
 
-add_action( 'wp_ajax_ipf_get_user_images', 'ipf_get_user_images');
-function ipf_get_user_images() {
+add_action( 'wp_ajax_prth_get_user_images', 'prth_get_user_images');
+function prth_get_user_images() {
     $offset = is_numeric($_GET['offset']) ? intval($_GET['offset']) : 0;
     $perPage = is_numeric($_GET['perPage']) ? intval($_GET['perPage']) : 10;
     $args = array(
@@ -275,50 +275,50 @@ function ipf_get_user_images() {
         );
     }
 
-    ipfSendResponse(array('content' => $result, 'status' => 200));
+    prthSendResponse(array('content' => $result, 'status' => 200));
 }
 
 
 
 // POST SETTINGS
-add_action( 'wp_ajax_ipf_get_edit_boxes', 'ipf_get_edit_boxes');
-function ipf_get_edit_boxes() {
+add_action( 'wp_ajax_prth_get_edit_boxes', 'prth_get_edit_boxes');
+function prth_get_edit_boxes() {
     header('Content-Type: text/html');
     $tag = stripslashes($_GET['tag']);
     $post_id = $_GET['post'];
-    $restr = ipfEnsureEditablePostIdHtml($post_id, $tag);
+    $restr = prthEnsureEditablePostIdHtml($post_id, $tag);
 
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     while ( have_posts() ) : the_post();
-        ipfRenderEditBoxes(apply_filters('ipf_edit_boxes', array(), $restr, $tag));
+        prthRenderEditBoxes(apply_filters('prth_edit_boxes', array(), $restr, $tag));
     endwhile;
     wp_reset_query();
     wp_die();
 }
 
-add_action( 'wp_ajax_ipf_get_add_boxes', 'ipf_get_add_boxes');
-function ipf_get_add_boxes() {
+add_action( 'wp_ajax_prth_get_add_boxes', 'prth_get_add_boxes');
+function prth_get_add_boxes() {
     header('Content-Type: text/html');
     $post_type = $_GET['post_type'];
     $tag = stripslashes($_GET['tag']);
-    $restr = ipfGetCreateRestrictions($post_type, $tag);
+    $restr = prthGetCreateRestrictions($post_type, $tag);
 
     if (!$restr['allow']) {
         http_response_code(403);
         wp_die();
     }
 
-    ipfRenderEditBoxes(apply_filters('ipf_add_boxes', array(), $restr, $tag, $post_type));
+    prthRenderEditBoxes(apply_filters('prth_add_boxes', array(), $restr, $tag, $post_type));
     wp_die();
 }
 
-add_action( 'wp_ajax_ipf_edit_post', 'ipf_edit_post');
-function ipf_edit_post() {
+add_action( 'wp_ajax_prth_edit_post', 'prth_edit_post');
+function prth_edit_post() {
     header('Content-Type: text/html');
     $post_id = $_POST['post'];
-    $restr = ipfEnsureEditablePostIdHtml($_POST['post']);
+    $restr = prthEnsureEditablePostIdHtml($_POST['post']);
     $tag = stripslashes($_GET['tag']);
-    $boxData = ipfEnsureJsonHtml(stripslashes($_POST['boxData']));
+    $boxData = prthEnsureJsonHtml(stripslashes($_POST['boxData']));
 
     $results =  array(
         "errors" => array(),
@@ -328,7 +328,7 @@ function ipf_edit_post() {
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     while ( have_posts() ) {
         the_post();
-        $results = apply_filters('ipf_edit_post', $results, $boxData, $restr, $tag);
+        $results = apply_filters('prth_edit_post', $results, $boxData, $restr, $tag);
     }
     wp_reset_query();
 
@@ -342,14 +342,14 @@ function ipf_edit_post() {
     query_posts(array('p' => $post_id, 'post_type' => 'any'));
     while ( have_posts() ) {
         the_post();
-        ipfRenderEditBoxes(apply_filters('ipf_edit_boxes', array(), $restr, $tag));
+        prthRenderEditBoxes(apply_filters('prth_edit_boxes', array(), $restr, $tag));
         $errors = $results["errors"];
         if (!empty($errors)) {
-            echo '<div class="ipfError">' . count($errors) . __(" errors were noticed ", "ipf") . implode(", ", $errors) . '</div>';
+            echo '<div class="prthError">' . count($errors) . __(" errors were noticed ", "prth") . implode(", ", $errors) . '</div>';
         }
         $warnings = $results["warnings"];
         if (!empty($warnings)) {
-            echo '<div class="ipfWarning">' . count($warnings) . __(" warnings were noticed ", "ipf") . implode(", ", $warnings) . '</div>';
+            echo '<div class="prthWarning">' . count($warnings) . __(" warnings were noticed ", "prth") . implode(", ", $warnings) . '</div>';
         }
     }
     wp_reset_query();
@@ -358,24 +358,24 @@ function ipf_edit_post() {
 }
 
 
-add_action( 'wp_ajax_ipf_add_post', 'ipf_add_post');
-function ipf_add_post() {
+add_action( 'wp_ajax_prth_add_post', 'prth_add_post');
+function prth_add_post() {
     $post_type = $_POST['post_type'];
     $tag = stripslashes($_POST['tag']);
-    $restr = ipfGetCreateRestrictions($post_type, $tag);
+    $restr = prthGetCreateRestrictions($post_type, $tag);
 
-    if (!ipfRestrictionAllowed($restr)) {
-        ipfSendResponse(array('status' => 403, 'error' => __('You do not have permission to create post of type ', 'ipf').$post_type));
+    if (!prthRestrictionAllowed($restr)) {
+        prthSendResponse(array('status' => 403, 'error' => __('You do not have permission to create post of type ', 'prth').$post_type));
     }
 
-    $boxData = ipfEnsureJson(stripslashes($_POST['boxData']));
+    $boxData = prthEnsureJson(stripslashes($_POST['boxData']));
     $preCreate =  array(
         "errors" => array(),
         "warnings" => array(),
         "post_data" => array("meta_input" => array(), "post_type" => $post_type),
         "post_tax" => array(),
         'actionsJs' => array());
-    $result = apply_filters('ipf_add_post_before_create', $preCreate, $boxData, $restr, $tag, $post_type);
+    $result = apply_filters('prth_add_post_before_create', $preCreate, $boxData, $restr, $tag, $post_type);
 
     $post_id = wp_insert_post($result["post_data"]);
     if (!empty($results["post_tax"])) {
@@ -388,24 +388,24 @@ function ipf_add_post() {
     while ( have_posts() ) {
         the_post();
         $result["URL"] = get_permalink();
-        $result = apply_filters('ipf_add_post_after_create', $result, $boxData, $restr, $tag);
+        $result = apply_filters('prth_add_post_after_create', $result, $boxData, $restr, $tag);
         $result["post_data"] = get_post();
     }
     wp_reset_query();
 
-    ipfSendResponse(array("status" => 200, "content" => $result));
+    prthSendResponse(array("status" => 200, "content" => $result));
 }
 
 
-// SETTINGS ipf_save_settings
+// SETTINGS prth_save_settings
 
-add_action( 'wp_ajax_ipf_save_settings', 'ipf_save_settings');
-function ipf_save_settings() {
-    if (!ipfCanChangeSettings()) {
-        ipfSendResponse(array('status' => 403, 'error' => __('You do not have permission to change settings', 'ipf')));
+add_action( 'wp_ajax_prth_save_settings', 'prth_save_settings');
+function prth_save_settings() {
+    if (!prthCanChangeSettings()) {
+        prthSendResponse(array('status' => 403, 'error' => __('You do not have permission to change settings', 'prth')));
     }
-    ipfSetSettings(json_decode(stripslashes($_POST['settings']), true));
-    ipfSendResponse(array("status" => 200, "content" => ipfGetSettings()));
+    prthSetSettings(json_decode(stripslashes($_POST['settings']), true));
+    prthSendResponse(array("status" => 200, "content" => prthGetSettings()));
 }
 
 // -----------------------------------------------------------

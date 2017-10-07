@@ -1,35 +1,35 @@
 <?php
 defined( 'ABSPATH' ) or die( '' );
 
-function ipfAddNavMenuMetaBoxes() {
+function prthAddNavMenuMetaBoxes() {
     add_meta_box(
-        'ipf_nav_link',
-        __('Front Post', "ipf"),
-        'ipfNavMenuMetaBox',
+        'prth_nav_link',
+        __('Post Right There', "prth"),
+        'prthNavMenuMetaBox',
         'nav-menus',
         'side',
         'low'
     );
 }
 
-function ipfNavMenuMetaBox() {
-    include( IPF .'templates/nav-menu-meta-box.php' );
+function prthNavMenuMetaBox() {
+    include( PRTH .'templates/nav-menu-meta-box.php' );
 }
 
-add_action('admin_init', 'ipfAddNavMenuMetaBoxes');
-add_action( 'admin_print_footer_scripts', 'ipfPrintRestrictNavMenuSettings' );
+add_action('admin_init', 'prthAddNavMenuMetaBoxes');
+add_action( 'admin_print_footer_scripts', 'prthPrintRestrictNavMenuSettings' );
 
-function ipfOutputOptionsPage() {
-    include( IPF .'templates/options-page.php' );
+function prthOutputOptionsPage() {
+    include( PRTH .'templates/options-page.php' );
 }
 
-add_action( 'admin_menu', 'ipf_settings_page' );
-function ipf_settings_page() {
+add_action( 'admin_menu', 'prth_settings_page' );
+function prth_settings_page() {
     add_options_page(
-        'Rich Front Post Settings',
-        'Rich Front Post',
+        'Post Right There Settings',
+        'Post Right There',
         'manage_options',
-        'ipf_settings',
-        'ipfOutputOptionsPage'
+        'prth_settings',
+        'prthOutputOptionsPage'
     );
 }

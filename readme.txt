@@ -51,7 +51,7 @@ Post Right There collaborates with the following plugins:
 
 ### Custom Meta Fields
 
-Apart from the built in fields mentioned above, it is easy to add support for any custom meta field using the custom filters:<span class="filterWrap">`ipf_edit_boxes``ipf_add_boxes``ipf_edit_post``ipf_add_post_before_create`</span> to specify extra fields that can be edited from the front, and to specify fields that are present during the creation of a new post from the front.
+Apart from the built in fields mentioned above, it is easy to add support for any custom meta field using the custom filters:<span class="filterWrap">`prth_edit_boxes``prth_add_boxes``prth_edit_post``prth_add_post_before_create`</span> to specify extra fields that can be edited from the front, and to specify fields that are present during the creation of a new post from the front.
 For examples see file`built-in-edit-boxes.php`
 
 
@@ -92,6 +92,5 @@ _Icon pack by icons8.com_
 7. Image remove confirmation
 8. Disable plugin for specific post types
 9. HTML editor
-
 
 

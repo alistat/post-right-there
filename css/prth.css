@@ -1,4 +1,4 @@
-.editContainer.editing .ipfEdit {
+.editContainer.editing .prthEdit {
     display: none;
 }
 
@@ -12,48 +12,48 @@
     display: inline-block;
 }
 
-.editContainer .ipfEdit:before {
+.editContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Editing/edit-26.png");
 }
 
-.editImageContainer .ipfEdit:before {
+.editImageContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/office/PNG/40/Editing/edit_image-40.png");
 }
 
-.ipfAddImage:before {
+.prthAddImage:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Photo_Video/add_image-24.png");
 }
 
-.editExcerptContainer .ipfEdit:before {
+.editExcerptContainer .prthEdit:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Programming/edit_property-26.png");
 }
 
-.editContainer .ipfCancel:before {
+.editContainer .prthCancel:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/cancel-24.png");
 }
 
-.editContainer .ipfSave:before {
+.editContainer .prthSave:before {
     background-image: url("https://maxcdn.icons8.com/Android_L/PNG/24/Programming/save-24.png");
 }
 
-.editContainer .ipfRemove:before {
+.editContainer .prthRemove:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/User_Interface/delete_sign-24.png");
 }
 
-.editContainer .ipfAdd:before {
+.editContainer .prthAdd:before {
     background-image: url("https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/plus-24.png");
 }
 
-.editContainer .ipfProperties:before {
+.editContainer .prthProperties:before {
     background-image: url("https://maxcdn.icons8.com/windows8/PNG/26/Very_Basic/settings-26.png");
 }
 
 
-.editContainer.editing .ipfSave, .editContainer.editing .ipfCancel {
+.editContainer.editing .prthSave, .editContainer.editing .prthCancel {
     display: unset !important;
 }
 
-.ipfSave, .ipfCancel {
+.prthSave, .prthCancel {
     display: none;
 }
 
@@ -118,7 +118,7 @@
     display: unset !important;
 }
 
-.editImageContainer .ipfRemove, .editImageContainer .ipfEdit {
+.editImageContainer .prthRemove, .editImageContainer .prthEdit {
     display: none;
 }
 
@@ -128,7 +128,7 @@
     width: -webkit-max-content;
 }
 
-.has-post-thumbnail .ipfAddImage {
+.has-post-thumbnail .prthAddImage {
     display: none;
 }
 
@@ -138,19 +138,19 @@
     left: 0.2em;
 }
 
-.wp-post-image+.editImageContainer .ipfEdit, .wp-post-image+.editImageContainer .ipfRemove {
+.wp-post-image+.editImageContainer .prthEdit, .wp-post-image+.editImageContainer .prthRemove {
     display: unset;
 }
 
-.ipfNoImage {
+.prthNoImage {
     display: none !important;
 }
 
-.ipfRefreshThumb {
+.prthRefreshThumb {
     display: block;
 }
 
-.ipfNoImage~.ipfRefreshThumb {
+.prthNoImage~.prthRefreshThumb {
     display: none !important;
 }
 
@@ -165,12 +165,12 @@
     min-height: 4em;
 }
 
-.ipfAutoHideControls .editContainer {
+.prthAutoHideControls .editContainer {
     visibility: hidden;
 }
 
-.ipfAutoHideControls:hover .editContainer, .editContainer:hover,
-.editContainer.editing, .ipfAutoHideControls:hover .editExcerptDecor,
+.prthAutoHideControls:hover .editContainer, .editContainer:hover,
+.editContainer.editing, .prthAutoHideControls:hover .editExcerptDecor,
 .editContainer.editing .editExcerptDecor, .editContainer:hover~.editExcerptDecor {
     visibility: visible !important;
 }
@@ -188,18 +188,18 @@
     position: fixed !important;
 }
 
-.ipfDeleteImgConfirmImg {
+.prthDeleteImgConfirmImg {
     display: block;
     max-height: 28em;
     margin: auto;
     border: 2px double #878787;
 }
 
-button.ipfImageCompletelyDelete[disabled]:hover {
+button.prthImageCompletelyDelete[disabled]:hover {
     padding: 0;
 }
 
-.ipfDeleteImgConfirm {
+.prthDeleteImgConfirm {
     font-size: 1.1em;
     display: block;
     text-align: center;
@@ -219,38 +219,38 @@ button.ipfImageCompletelyDelete[disabled]:hover {
     min-height: 4em;
 }
 
-.ipfEditBoxGroup {
+.prthEditBoxGroup {
     display: inline-block;
     vertical-align: text-top;
     margin-right: 1em;
 }
 
-.ipfEditBoxGroupHeader {
+.prthEditBoxGroupHeader {
     color: rgb(91, 0, 105);
 }
 
-.ipfEditDialog {
+.prthEditDialog {
     position: fixed !important;
     box-shadow: 0 2px 13px 2px rgba(0, 0, 0, 0.6);
     z-index: 1001;
 }
 
-.ipfEditDialog  .ui-dialog-content{
+.prthEditDialog  .ui-dialog-content{
     width: 100% !important;
     padding-top: 0.5em !important;
 }
 
-.ipfEditDialog .ui-dialog-titlebar-close {
+.prthEditDialog .ui-dialog-titlebar-close {
     display: none;
 }
 
-.ipfEditDialog .ui-dialog-titlebar, .smallDialog .ui-dialog-titlebar {
+.prthEditDialog .ui-dialog-titlebar, .smallDialog .ui-dialog-titlebar {
     padding: 0 1em 0.3em 0.7em !important;
     background: none !important;
     border: none;
 }
 
-.ipfEditDialog .ui-dialog-title, .smallDialog .ui-dialog-title {
+.prthEditDialog .ui-dialog-title, .smallDialog .ui-dialog-title {
     border-width: 0px 0px 2px;
     text-align: center;
     border-style: solid;
@@ -258,7 +258,7 @@ button.ipfImageCompletelyDelete[disabled]:hover {
     border-radius: 5px;
 }
 
-.ipfEditDialog .ui-dialog-title {
+.prthEditDialog .ui-dialog-title {
     border-color: rgb(189, 189, 189);
 }
 
@@ -266,11 +266,11 @@ button.ipfImageCompletelyDelete[disabled]:hover {
     border-color: rgb(113, 117, 161);
 }
 
-.ipfEditDialog.ipfSourceDialog .ui-dialog-title {
+.prthEditDialog.prthSourceDialog .ui-dialog-title {
     border-color: rgb(113, 117, 161);
 }
 
-.ipfEditDialog .ui-dialog-buttonpane {
+.prthEditDialog .ui-dialog-buttonpane {
     padding-bottom: 0 !important;
     border-color: rgba(173, 173, 173, 0.6);
     border-style: dashed;
@@ -278,7 +278,7 @@ button.ipfImageCompletelyDelete[disabled]:hover {
 }
 
 
-body .ipfEditDialog .ui-dialog-buttonpane .ui-button, body .smallDialog .ui-dialog-buttonpane .ui-button {
+body .prthEditDialog .ui-dialog-buttonpane .ui-button, body .smallDialog .ui-dialog-buttonpane .ui-button {
     border: 0 !important;
     border-radius: 2px !important;
     font-family: Montserrat, "Helvetica Neue", sans-serif !important;
@@ -286,7 +286,7 @@ body .ipfEditDialog .ui-dialog-buttonpane .ui-button, body .smallDialog .ui-dial
     text-transform: none !important;
 }
 
-body .ipfEditDialog .ui-dialog-buttonpane .ui-button {
+body .prthEditDialog .ui-dialog-buttonpane .ui-button {
     background: #1a1a1a;
     color: #fff !important;
 }
@@ -297,7 +297,7 @@ body .smallDialog .ui-dialog-buttonpane .ui-button {
     margin-bottom: 0;
 }
 
-body .ipfEditDialog .ui-dialog-buttonpane .ui-button:hover, body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
+body .prthEditDialog .ui-dialog-buttonpane .ui-button:hover, body .smallDialog .ui-dialog-buttonpane .ui-button:hover {
     background: #007acc;
 }
 
@@ -314,42 +314,42 @@ body .smallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     float: none;
 }
 
-.ipfEditBoxGroup.hits {
+.prthEditBoxGroup.hits {
     display: block;
     text-align: center;
     margin-bottom: 0.3em;
 }
 
-.ipfEditBoxGroup.hits .ipfEditBoxGroupHeader, .ipfEditBoxGroup.hits .ipfEditBox {
+.prthEditBoxGroup.hits .prthEditBoxGroupHeader, .prthEditBoxGroup.hits .prthEditBox {
     display: inline-block;
 }
 
-.ipfEditBoxGroup.hits .ipfEditBoxGroupHeader {
+.prthEditBoxGroup.hits .prthEditBoxGroupHeader {
     font-weight: 500;
 }
 
-.ipfHits {
+.prthHits {
     font-style: italic;
 }
 
-.ipfEditBoxGroup.seoUltimate {
+.prthEditBoxGroup.seoUltimate {
     margin-top: 1.3em;
 }
 
-.ipfEditBoxGroup.seoUltimate .ipfEditBoxGroupHeader {
+.prthEditBoxGroup.seoUltimate .prthEditBoxGroupHeader {
     font-style: italic;
 }
 
-.ipfEditBoxGroup.content {
+.prthEditBoxGroup.content {
     display: block;
     margin-top: 1em;
 }
 
-.ipfEditBoxGroup.content textarea {
+.prthEditBoxGroup.content textarea {
     height: 8em;
 }
 
-.ipfEditBoxGroup button {
+.prthEditBoxGroup button {
     text-transform: none !important;
 }
 
@@ -366,21 +366,21 @@ body .smallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     display: inline-block !important;
 }
 
-.ipfSourceDialog .CodeMirror {
+.prthSourceDialog .CodeMirror {
     height: 100%;
     font-size: 12px;
     line-height: 18px;
 }
 
-.ipfSourceDialog .ui-dialog-content {
+.prthSourceDialog .ui-dialog-content {
     padding: .5em 1em 0 0 !important;
 }
 
-/*#ipfTools .mce-ico {*/
+/*#prthTools .mce-ico {*/
     /*display: inline-block !important;*/
 /*}*/
 
-.ipfImgDiv {
+.prthImgDiv {
     display: inline-block;
     max-width: 30%;
     margin-bottom: 2em;
@@ -390,12 +390,12 @@ body .smallDialog .ui-dialog-buttonpane .ui-dialog-buttonset {
     padding-bottom: 0.4em;
 }
 
-.ipfImgDiv.selected {
+.prthImgDiv.selected {
     border: 2px solid rgba(113, 136, 224, 0.57);
     box-shadow: 0 0 4px 2px rgba(46, 67, 105, 0.55);
 }
 
-.ipfImageTitle {
+.prthImageTitle {
     text-align: center;
     line-height: 1;
     color: dimgrey;

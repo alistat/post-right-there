@@ -1,8 +1,8 @@
 (function ($) {
     "use strict";
-    if (typeof window.ipfEditor === "undefined") window.ipfEditor = {};
-    if (typeof window.ipf === "undefined") window.ipf = {};
-    var lang = ipf.lang = ipfLang;
+    if (typeof window.prthEditor === "undefined") window.prthEditor = {};
+    if (typeof window.prth === "undefined") window.prth = {};
+    var lang = prth.lang = prthLang;
 
     var autoIncrement = 0;
 
@@ -15,7 +15,7 @@
 
     var tinyMcePluginsURL = "//cdn.tinymce.com/4/plugins/";
 
-    var tinyMceExternalPlugins = $.extend({}, ipf.tinyMceExternalPlugins, {
+    var tinyMceExternalPlugins = $.extend({}, prth.tinyMceExternalPlugins, {
         'advlist': tinyMcePluginsURL+"advlist/plugin.min.js",
         'anchor': tinyMcePluginsURL+"anchor/plugin.min.js",
         'visualblocks': tinyMcePluginsURL+"visualblocks/plugin.min.js",
@@ -34,18 +34,18 @@
         insert : {title : 'Insert', items : 'wpImage wpFile media link unlink | charmap anchor hr insertdatetime'},
         view   : {title : 'View'  , items : 'visualblocks visualaid'},
         format : {title : 'Format', items : 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
-        tools: {title : 'Tools', items: 'ipfCode', menuHasIcons: true}
+        tools: {title : 'Tools', items: 'prthCode', menuHasIcons: true}
     };
     var tinyMceToolbar1 = 'fontsizeselect styleselect | undo redo | bold italic underline | alignleft aligncenter alignright | outdent indent';
-    var tinyMceToolbar2 = 'bullist numlist | forecolor backcolor | link unlink  hr table wpImage ipfCode emoticons '+ipf.tinyMceExtraButtons;
+    var tinyMceToolbar2 = 'bullist numlist | forecolor backcolor | link unlink  hr table wpImage prthCode emoticons '+prth.tinyMceExtraButtons;
 
 
     function makeContentEditor(elem, postId, newHtml, noFocus) {
         noFocus = !!noFocus;
-        if (!elem.id) elem.id = "ipfEditor-"+(++autoIncrement);
+        if (!elem.id) elem.id = "prthEditor-"+(++autoIncrement);
 
         elem.oldHTML = elem.innerHTML;
-        if (typeof newHtml != "undefined" && newHtml != null) elem.innerHTML = newHtml;
+        if (typeof newHtml !== "undefined" && newHtml !== null) elem.innerHTML = newHtml;
 
         elem.setAttribute("contentEditable", "");
         tinymce.init({
@@ -68,9 +68,9 @@
             theme_advanced_resizing_use_cookie : false,
             contentCSS: null,
             setup: function(ed) {
-                var restr = ipf.postRestrictions[postId];
+                var restr = prth.postRestrictions[postId];
 
-                if (ipf.restrictionGet(restr, "post_content.attach_images", true)) {
+                if (prth.restrictionGet(restr, "post_content.attach_images", true)) {
                     var insertImageIcon = 'https://maxcdn.icons8.com/iOS7/PNG/25/Photo_Video/add_image_filled-25.png';
                     ed.addButton('wpImage', {
                         title: lang.insertImage,
@@ -85,7 +85,7 @@
                     });
                 }
 
-                if (ipf.restrictionGet(restr, "post_content.attach_files", true)) {
+                if (prth.restrictionGet(restr, "post_content.attach_files", true)) {
                     var insertFileIcon = "https://maxcdn.icons8.com/windows8/PNG/26/Files/add_file-26.png";
                     ed.addButton('wpFile', {
                         title: lang.insertFile,
@@ -108,20 +108,20 @@
                     text: lang.save,
                     context: 'file',
                     image: "https://maxcdn.icons8.com/Android_L/PNG/24/Programming/save-24.png",
-                    onclick: function() { ipf.saveContent(elem, postId); }
+                    onclick: function() { prth.saveContent(elem, postId); }
                 });
                 ed.addMenuItem('wpCancel', {
                     text: lang.cancel,
                     context: 'file',
                     image: "https://maxcdn.icons8.com/Color/PNG/24/Very_Basic/cancel-24.png",
-                    onclick: function() { ipf.cancelContentEdit(elem, postId); }
+                    onclick: function() { prth.cancelContentEdit(elem, postId); }
                 });
-                ed.addButton('ipfCode', {
+                ed.addButton('prthCode', {
                     title: 'Source Code',
                     image: "https://maxcdn.icons8.com/Color/PNG/24/Programming/source_code-24.png",
                     onclick: function() { openSourceDialog(elem); }
                 });
-                ed.addMenuItem('ipfCode', {
+                ed.addMenuItem('prthCode', {
                     text: 'Source Code',
                     context: 'tools',
                     image: "https://maxcdn.icons8.com/Color/PNG/24/Programming/source_code-24.png",
@@ -139,11 +139,11 @@
 
     function makeTitleEditor(elem, postId, newHtml, noFocus) {
         noFocus = !!noFocus;
-        if (!elem.id) elem.id = "ipfEditor-"+(++autoIncrement);
+        if (!elem.id) elem.id = "prthEditor-"+(++autoIncrement);
 
 
         elem.oldHTML = elem.innerHTML;
-        if (typeof newHtml != "undefined" && newHtml != null) elem.innerHTML = newHtml;
+        if (typeof newHtml !== "undefined" && newHtml !== null) elem.innerHTML = newHtml;
 
         elem.setAttribute("contentEditable", "");
         tinymce.init({
@@ -198,9 +198,9 @@
     }
 
     function onEditorInsertImageClick(postId, elem, ed) {
-        ipf.openFileFrame(postId, 'image', false, function(attachment) {
+        prth.openFileFrame(postId, 'image', false, function(attachment) {
             elem.style.opacity = 0.5;
-            ipfData.getAttachmentImage(attachment.id, function (image) {
+            prthData.getAttachmentImage(attachment.id, function (image) {
                 ed.insertContent('<a href="'+attachment.url+'">'+image+'</a>');
                 elem.style.opacity = 1;
             }, function () {elem.style.opacity = 1;});
@@ -208,7 +208,7 @@
     }
 
     function onEditorInsertFileClick(postId, elem, ed) {
-        ipf.openFileFrame(postId, null, false, function(attachment) {
+        prth.openFileFrame(postId, null, false, function(attachment) {
             ed.insertContent('<a href="'+attachment.url+'" title="'+attachment.title+'">'+attachment.filename+'</a>');
         });
     }
@@ -217,7 +217,7 @@
     function openSourceDialog(elem) {
         var content = getContent(elem);
 
-        var dialog = jQuery("<div class='ipfSource'></div>");
+        var dialog = jQuery("<div class='prthSource'></div>");
         console.log(content);
         var codemirrorDoc;
         console.log(codemirrorDoc);
@@ -240,7 +240,7 @@
         dialog.dialog({
             width: 458,  height: 504,
             position: position,
-            dialogClass: "ipfEditDialog ipfSourceDialog", modal: true,
+            dialogClass: "prthEditDialog prthSourceDialog", modal: true,
             open: function(event, ui) {
                 jQuery(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
                 $('.ui-widget-overlay').click(function() { dialog.dialog("close"); });
@@ -257,13 +257,13 @@
         });
     }
 
-    ipfEditor.makeContentEditor =  makeContentEditor;
-    ipfEditor.makeTitleEditor =  makeTitleEditor;
-    ipfEditor.makeExcerptEditor =  makeExcerptEditor;
-    ipfEditor.getContent =  getContent;
-    ipfEditor.getText =  getText;
-    ipfEditor.destroyEditor =  destroyEditor;
-    ipfEditor.addEditorListener =  addEditorListener;
-    ipfEditor.cancelEdit =  cancelEdit;
-    ipfEditor.openSourceDialog =  openSourceDialog;
+    prthEditor.makeContentEditor =  makeContentEditor;
+    prthEditor.makeTitleEditor =  makeTitleEditor;
+    prthEditor.makeExcerptEditor =  makeExcerptEditor;
+    prthEditor.getContent =  getContent;
+    prthEditor.getText =  getText;
+    prthEditor.destroyEditor =  destroyEditor;
+    prthEditor.addEditorListener =  addEditorListener;
+    prthEditor.cancelEdit =  cancelEdit;
+    prthEditor.openSourceDialog =  openSourceDialog;
 })(jQuery);
