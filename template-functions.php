@@ -133,7 +133,6 @@ function prthFoot() {
         <div style="display: none;">
             <?php wp_editor('', "prthDummyEditor"); ?>
         </div>
-        <a style="display: none;" href="https://icons8.com">Icon pack by Icons8</a>
 
         <script>
             prth.tinyMceExternalPlugins = <?php echo json_encode(apply_filters("mce_external_plugins", array())); ?>;
@@ -141,7 +140,7 @@ function prthFoot() {
             prth.ajaxurl = prth.adminURL = "<?php echo admin_url('admin-ajax.php'); ?>";
             // support photo gallery plugin
             if (typeof bwg_admin_ajax === "undefined") {
-                window.bwg_admin_ajax = adminURL+"?action=BWGShortcode";
+                window.bwg_admin_ajax = prth.adminURL+"?action=BWGShortcode";
                 window.bwg_plugin_url = "<?php echo plugins_url('photo-gallery'); ?>";
             }
             prth.authorUrl = "?post_type=any&author=<?php esc_attr_e(get_the_author_meta('login', get_current_user_id())); ?>";

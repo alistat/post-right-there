@@ -2,6 +2,7 @@
     "use strict";
 
     if (typeof window.prthData === "undefined") window.prthData = {};
+    var adminURL = prth.ajaxurl;
 
     prthData.getTheContent = function (post, success, error) {
         $.ajax({
