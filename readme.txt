@@ -63,7 +63,8 @@ For examples see file`built-in-edit-boxes.php`
 The plugins also features a flexible restrictions system that allows to grant user rights to edit or create posts of specific types according to custom criteria. The restrictions system also provides the ability to disallow editing of individual fields or allow these fields to take specific values. For example you may want to allow authors to only publish (custom) posts of specific categories according to their roles.
 
 
-
+### Source code
+Source code available at [github.com/alistat/post-right-there](https://github.com/alistat/post-right-there)
 
 
 Currently available in English and Greek.
