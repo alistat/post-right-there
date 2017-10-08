@@ -24,7 +24,6 @@ function prthPrintRestrictNavMenuSettings() {
 
             if( css_class.val().match("^prth-") ) {
                 css_class.attr( 'readonly', 'readonly' );
-//                settings.find( '.field-url' ).css( 'display', 'none' );
                 settings.find( '.field-url input' ).attr( 'readonly', 'readonly' );
             }
         });

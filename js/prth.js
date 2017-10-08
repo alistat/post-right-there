@@ -33,7 +33,6 @@
                 postQ.addClass('prthAutoHideControls');
             }
 
-            console.log(restr);
             if (restrictionAllowed(restr, 'post_title')) {
                 var titleElem = post.querySelector('.entry-title, .tribe-events-single-event-title, .tribe-events-list-event-title .tribe-event-url');
                 setUpTitleEditability(titleElem, id);
@@ -301,7 +300,7 @@
                     for (var i=0; i < images.length; i++) {
                         var image = images[i];
                         var imgDiv = jQuery("<div></div>").addClass("prthImgDiv").attr("data-id", image.id);
-                        imgDiv.append("<img src='"+image.url+"'alt='"+image.post_title+"'/><div class='prthImageTitle'>"+image.post_title+"</div>");
+                        imgDiv.append("<img src='"+image.url+" 'alt='"+image.post_title+"'/><div class='prthImageTitle'>"+image.post_title+"</div>");
                         imgDiv.click(imgDiv, function(e) {
                             imagesWrap.children(".prthImgDiv").removeClass("selected");
                             $(e.data).addClass("selected");
@@ -377,8 +376,6 @@
             file_frame.uploader.uploader.param( 'post_id', postId );
         }
 
-        // file_frame.$el.css('display', 'none');
-        // file_frame.close();
         file_frame.open();
     }
 
